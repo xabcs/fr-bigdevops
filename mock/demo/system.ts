@@ -3,6 +3,48 @@ import { MockMethod } from 'vite-plugin-mock';
 import { resultError, resultPageSuccess, resultSuccess } from '../_util';
 import { RoleEnum } from '@/enums/roleEnum';
 
+const FakeRoleList = [
+  {
+    id: 1,
+    orderNo: 1,
+    roleName: '超级管理员',
+    roleValue: RoleEnum.SUPER,
+    createTime: '@datetime',
+    remark: '超级管理员',
+    menu: ['0', '1', '2'],
+    status: '1',
+  },
+  {
+    id: 2,
+    orderNo: 2,
+    roleName: '监控管理员',
+    roleValue: RoleEnum.PROM_ADMIN,
+    createTime: '@datetime',
+    remark: '监控管理员',
+    menu: ['0', '1', '2'],
+    status: '1',
+  },
+  {
+    id: 3,
+    orderNo: 3,
+    roleName: 'cicd管理员',
+    roleValue: RoleEnum.CICD_ADMIN,
+    createTime: '@datetime',
+    remark: 'cicd管理员',
+    menu: ['0', '1', '2'],
+    status: '1',
+  },
+  {
+    id: 4,
+    orderNo: 4,
+    roleName: '服务树管理员',
+    roleValue: RoleEnum.TREE_ADMIN,
+    createTime: '@datetime',
+    remark: '服务树管理员',
+    menu: ['0', '1', '2'],
+    status: '1',
+  },
+];
 export function createFakeRoleList() {
   return [
     {
@@ -65,7 +107,7 @@ const accountList = (() => {
   return result;
 })();
 const roleList = (() => {
-  return createFakeRoleList();
+  return FakeRoleList;
 })();
 
 // const roleList = (() => {
@@ -207,8 +249,14 @@ export default [
     url: '/basic-api/system/setRoleStatus',
     timeout: 500,
     method: 'post',
-    response: ({ query }) => {
-      const { id, status } = query;
+    response: ({ body }) => {
+      const { id, status } = body;
+
+      const checkRole = FakeRoleList.find((item) => item.id === id);
+      if (!checkRole) {
+        return resultError('角色没有找到');
+      }
+      checkRole.status = status;
       return resultSuccess({ id, status });
     },
   },
