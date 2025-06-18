@@ -20,6 +20,7 @@ enum Api {
   MenuList = '/system/getMenuList',
   RolePageList = '/system/getRoleListByPage',
   GetAllRoleList = '/system/getAllRoleList',
+  DeleteRole = '/system/deleteRole',
 }
 
 export const getAccountList = (params: AccountParams) =>
@@ -42,3 +43,5 @@ export const setRoleStatus = (id: number, status: string) =>
 
 export const isAccountExist = (account: string) =>
   defHttp.post({ url: Api.IsAccountExist, params: { account } }, { errorMessageMode: 'none' });
+
+export const deleteRole = (id: number) => defHttp.delete({ url: Api.DeleteRole, params: { id } });

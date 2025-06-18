@@ -31,12 +31,13 @@
 </template>
 <script lang="ts" setup>
   import { BasicTable, useTable, TableAction } from '@/components/Table';
-  import { getRoleListByPage } from '@/api/demo/system';
+  import { getRoleListByPage, deleteRole } from '@/api/demo/system';
 
   import { useDrawer } from '@/components/Drawer';
   import RoleDrawer from './RoleDrawer.vue';
 
   import { columns, searchFormSchema } from './role.data';
+  import { useMessage } from '@/hooks/web/useMessage';
 
   defineOptions({ name: 'RoleManagement' });
 
@@ -77,6 +78,21 @@
 
   function handleDelete(record: Recordable) {
     console.log(record);
+    const { createMessage } = useMessage();
+    deleteRole(record.id)
+      .then(() => {
+        createMessage.success('删除角色成功');
+        reload();
+      })
+      .catch(() => {
+        // 你的其它逻辑
+        createMessage.error('删除角色失败');
+
+      })
+      .finally(() => {
+        // 你的其它逻辑
+        record.pendingStatus = false;
+      });
   }
 
   function handleSuccess() {

@@ -1,4 +1,4 @@
-import { SubMenuProvider } from './../../src/components/SimpleMenu/src/components/types';
+// import { SubMenuProvider } from './../../src/components/SimpleMenu/src/components/types';
 import { MockMethod } from 'vite-plugin-mock';
 import { resultError, resultPageSuccess, resultSuccess } from '../_util';
 import { RoleEnum } from '@/enums/roleEnum';
@@ -295,6 +295,21 @@ export default [
       } else {
         return resultSuccess(`${account} can use`);
       }
+    },
+  },
+  {
+    url: '/basic-api/system/deleteRole',
+    timeout: 500,
+    method: 'delete',
+    response: ({ body }) => {
+      const { id } = body;
+      const index = FakeRoleList.findIndex((item) => item.id === id);
+      if (index === -1) {
+        return resultError('角色没有找到');
+      }
+      FakeRoleList.splice(index, 1);
+      console.log('删除角色成功', FakeRoleList);
+      return resultSuccess({ id });
     },
   },
 ] as MockMethod[];
