@@ -1,6 +1,52 @@
+import { SubMenuProvider } from './../../src/components/SimpleMenu/src/components/types';
 import { MockMethod } from 'vite-plugin-mock';
 import { resultError, resultPageSuccess, resultSuccess } from '../_util';
+import { RoleEnum } from '@/enums/roleEnum';
 
+export function createFakeRoleList() {
+  return [
+    {
+      id: 1,
+      orderNo: 1,
+      roleName: '超级管理员',
+      roleValue: RoleEnum.SUPER,
+      createTime: '@datetime',
+      remark: '超级管理员',
+      menu: ['0', '1', '2'],
+      status: '1',
+    },
+    {
+      id: 2,
+      orderNo: 2,
+      roleName: '监控管理员',
+      roleValue: RoleEnum.PROM_ADMIN,
+      createTime: '@datetime',
+      remark: '监控管理员',
+      menu: ['0', '1', '2'],
+      status: '1',
+    },
+    {
+      id: 3,
+      orderNo: 3,
+      roleName: 'cicd管理员',
+      roleValue: RoleEnum.CICD_ADMIN,
+      createTime: '@datetime',
+      remark: 'cicd管理员',
+      menu: ['0', '1', '2'],
+      status: '1',
+    },
+    {
+      id: 4,
+      orderNo: 4,
+      roleName: '服务树管理员',
+      roleValue: RoleEnum.TREE_ADMIN,
+      createTime: '@datetime',
+      remark: '服务树管理员',
+      menu: ['0', '1', '2'],
+      status: '1',
+    },
+  ];
+}
 const accountList = (() => {
   const result: any[] = [];
   for (let index = 0; index < 20; index++) {
@@ -18,23 +64,26 @@ const accountList = (() => {
   }
   return result;
 })();
-
 const roleList = (() => {
-  const result: any[] = [];
-  for (let index = 0; index < 4; index++) {
-    result.push({
-      id: index + 1,
-      orderNo: `${index + 1}`,
-      roleName: ['超级管理员', '管理员', '文章管理员', '普通用户'][index],
-      roleValue: '@first',
-      createTime: '@datetime',
-      remark: '@cword(10,20)',
-      menu: [['0', '1', '2'], ['0', '1'], ['0', '2'], ['2']][index],
-      'status|1': ['0', '1'],
-    });
-  }
-  return result;
+  return createFakeRoleList();
 })();
+
+// const roleList = (() => {
+//   const result: any[] = [];
+//   for (let index = 0; index < 4; index++) {
+//     result.push({
+//       id: index + 1,
+//       orderNo: `${index + 1}`,
+//       roleName: ['超级管理员', '管理员', '文章管理员', '普通用户'][index],
+//       roleValue: '@first',
+//       createTime: '@datetime',
+//       remark: '@cword(10,20)',
+//       menu: [['0', '1', '2'], ['0', '1'], ['0', '2'], ['2']][index],
+//       'status|1': ['0', '1'],
+//     });
+//   }
+//   return result;
+// })();
 
 const deptList = (() => {
   const result: any[] = [];
