@@ -3,7 +3,9 @@ import { h } from 'vue';
 import { Switch } from 'ant-design-vue';
 import { setRoleStatus } from '@/api/demo/system';
 import { useMessage } from '@/hooks/web/useMessage';
-
+import { useI18n } from '@/hooks/web/useI18n';
+// ...
+  const { t } = useI18n();
 type CheckedType = boolean | string | number;
 export const columns: BasicColumn[] = [
   {
@@ -66,7 +68,7 @@ export const columns: BasicColumn[] = [
 
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'roleNme',
+    field: 'roleName',
     label: '角色名称',
     component: 'Input',
     colProps: { span: 8 },
@@ -78,7 +80,7 @@ export const searchFormSchema: FormSchema[] = [
     componentProps: {
       options: [
         { label: '启用', value: '1' },
-        { label: '停用', value: '0' },
+        { label: '停用用用', value: '0' },
       ],
     },
     colProps: { span: 8 },

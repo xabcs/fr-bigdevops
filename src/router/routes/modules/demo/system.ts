@@ -7,6 +7,7 @@ const system: AppRouteModule = {
   path: '/system',
   name: 'System',
   component: LAYOUT,
+
   redirect: '/system/account',
   meta: {
     orderNo: 2,
@@ -15,6 +16,15 @@ const system: AppRouteModule = {
     roles: [RoleEnum.SUPER],
   },
   children: [
+    {
+      path: 'role',
+      name: 'RoleManagement',
+      meta: {
+        title: t('routes.demo.system.role'),
+        ignoreKeepAlive: true,
+      },
+      component: () => import('@/views/demo/system/role/index.vue'),
+    },    
     {
       path: 'account',
       name: 'AccountManagement',
@@ -45,34 +55,26 @@ const system: AppRouteModule = {
       },
       component: () => import('@/views/demo/system/account/AccountDetail.vue'),
     },
+
+
     {
-      path: 'role',
-      name: 'RoleManagement',
+      path: 'menu',
+      name: 'MenuManagement',
       meta: {
-        title: t('routes.demo.system.role'),
+        title: t('routes.demo.system.menu'),
         ignoreKeepAlive: true,
       },
-      component: () => import('@/views/demo/system/role/index.vue'),
+      component: () => import('@/views/demo/system/menu/index.vue'),
     },
-
-    // {
-    //   path: 'menu',
-    //   name: 'MenuManagement',
-    //   meta: {
-    //     title: t('routes.demo.system.menu'),
-    //     ignoreKeepAlive: true,
-    //   },
-    //   component: () => import('@/views/demo/system/menu/index.vue'),
-    // },
-    // {
-    //   path: 'dept',
-    //   name: 'DeptManagement',
-    //   meta: {
-    //     title: t('routes.demo.system.dept'),
-    //     ignoreKeepAlive: true,
-    //   },
-    //   component: () => import('@/views/demo/system/dept/index.vue'),
-    // },
+    {
+      path: 'dept',
+      name: 'DeptManagement',
+      meta: {
+        title: t('routes.demo.system.dept'),
+        ignoreKeepAlive: true,
+      },
+      component: () => import('@/views/demo/system/dept/index.vue'),
+    },
     {
       path: 'changePassword',
       name: 'ChangePassword',

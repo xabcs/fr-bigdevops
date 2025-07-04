@@ -31,21 +31,25 @@
 </template>
 <script lang="ts" setup>
   import { nextTick } from 'vue';
+  // import { useI18n } from 'vue-i18n';
 
   import { BasicTable, useTable, TableAction } from '@/components/Table';
-  import { getMenuList } from '@/api/demo/system';
+  import { deleteMenu, getMenuList } from '@/api/demo/system';
 
   import { useDrawer } from '@/components/Drawer';
   import MenuDrawer from './MenuDrawer.vue';
 
   import { columns, searchFormSchema } from './menu.data';
-
+  import { useMessage } from '@/hooks/web/useMessage';
   defineOptions({ name: 'MenuManagement' });
+  import { useI18n } from '@/hooks/web/useI18n';
+  const { t } = useI18n();
 
   const [registerDrawer, { openDrawer }] = useDrawer();
   const [registerTable, { reload, expandAll }] = useTable({
     title: '菜单列表',
     api: getMenuList,
+  
     columns,
     formConfig: {
       labelWidth: 120,
@@ -81,10 +85,27 @@
     });
   }
 
+  // function handleDelete(record: Recordable) {
+  //   console.log(record);
+  // }
   function handleDelete(record: Recordable) {
     console.log(record);
-  }
+    const { createMessage } = useMessage();
+    deleteMenu(record.id)
+      .then(() => {
+        createMessage.success('删除菜单成功');
+        reload();
+      })
+      .catch(() => {
+        // 你的其它逻辑
+        createMessage.error('删除失败');
 
+      })
+      .finally(() => {
+        // 你的其它逻辑
+        record.pendingStatus = false;
+      });
+  }
   function handleSuccess() {
     reload();
   }

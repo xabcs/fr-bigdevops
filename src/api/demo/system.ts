@@ -1,3 +1,5 @@
+import { mapData } from './../../views/demo/charts/data';
+import { createApp } from 'vue';
 import {
   AccountParams,
   DeptListItem,
@@ -9,6 +11,8 @@ import {
   AccountListGetResultModel,
   RolePageListGetResultModel,
   RoleListGetResultModel,
+  MenuForm,
+  RoleForm,
 } from './model/systemModel';
 import { defHttp } from '@/utils/http/axios';
 
@@ -21,6 +25,9 @@ enum Api {
   RolePageList = '/system/getRoleListByPage',
   GetAllRoleList = '/system/getAllRoleList',
   DeleteRole = '/system/deleteRole',
+  createMenu = '/system/createMenu',
+  deleteMenu = '/system/deleteMenu',
+  createRole = '/system/createRole',
 }
 
 export const getAccountList = (params: AccountParams) =>
@@ -31,6 +38,9 @@ export const getDeptList = (params?: DeptListItem) =>
 
 export const getMenuList = (params?: MenuParams) =>
   defHttp.get<MenuListGetResultModel>({ url: Api.MenuList, params });
+
+export const createMenu = (params: MenuForm) => defHttp.post({ url: Api.createMenu, params });
+export const createRole = (params: RoleForm) => defHttp.post({ url: Api.createRole, params });
 
 export const getRoleListByPage = (params?: RolePageParams) =>
   defHttp.get<RolePageListGetResultModel>({ url: Api.RolePageList, params });
@@ -45,3 +55,4 @@ export const isAccountExist = (account: string) =>
   defHttp.post({ url: Api.IsAccountExist, params: { account } }, { errorMessageMode: 'none' });
 
 export const deleteRole = (id: number) => defHttp.delete({ url: Api.DeleteRole, params: { id } });
+export const deleteMenu = (id: number) => defHttp.delete({ url: Api.deleteMenu, params: { id } });

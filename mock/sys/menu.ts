@@ -234,6 +234,19 @@ const linkRoute = {
     },
   ],
 };
+const menuList: any[] = [dashboardRoute, authRoute, levelRoute, sysRoute, linkRoute];
+
+// 递归查找父菜单
+function findMenuByPath(list, path) {
+  for (const item of list) {
+    if (item.id === path) return item;
+    if (item.children) {
+      const found = findMenuByPath(item.children, path);
+      if (found) return found;
+    }
+  }
+  return null;
+}
 
 export default [
   {
@@ -267,4 +280,32 @@ export default [
       return resultSuccess(menu);
     },
   },
+  // {
+  //   url: '/basic-api/system/createMenu',
+  //   timeout: 500,
+  //   method: 'post',
+  //   response: ({ body }) => {
+  //     const { parentPath, menu } = body;
+  //     if (parentPath) {
+  //       const parent = findMenuByPath(menuList, parentPath);
+  //       if (parent) {
+  //         parent.children = parent.children || [];
+  //         parent.children.push(menu);
+  //       } else {
+  //         return resultError('Parent menu not found!');
+  //       }
+  //     } else {
+  //       menuList.push(menu);
+  //     }
+  //     return resultSuccess(menu);
+  //   },
+  // },
+  // {
+  //   url: '/basic-api/system/getMenuList',
+  //   timeout: 100,
+  //   method: 'get',
+  //   response: () => {
+  //     return resultSuccess([dashboardRoute, authRoute, levelRoute, sysRoute, linkRoute]);
+  //   },
+  // },
 ] as unknown as MockMethod[];

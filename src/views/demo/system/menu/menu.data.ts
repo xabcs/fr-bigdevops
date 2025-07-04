@@ -2,20 +2,29 @@ import { BasicColumn, FormSchema } from '@/components/Table';
 import { h } from 'vue';
 import { Tag } from 'ant-design-vue';
 import Icon from '@/components/Icon/Icon.vue';
-
+import { useI18n } from '@/hooks/web/useI18n';
+// ...
+const { t } = useI18n();
 export const columns: BasicColumn[] = [
   {
-    title: '菜单名称',
-    dataIndex: 'menuName',
+    title: '英文名称',
+    dataIndex: 'name',
     width: 200,
     align: 'left',
+  },
+  {
+    title: '中文名称',
+    dataIndex: 'name',
+    width: 200,
+    align: 'left',
+    customRender: ({ record }) => t(record.meta?.title || record.name),
   },
   {
     title: '图标',
     dataIndex: 'icon',
     width: 50,
     customRender: ({ record }) => {
-      return h(Icon, { icon: record.icon });
+      return h(Icon, { icon: record.meta.icon });
     },
   },
   {
@@ -69,7 +78,7 @@ export const searchFormSchema: FormSchema[] = [
     componentProps: {
       options: [
         { label: '启用', value: '0' },
-        { label: '停用', value: '1' },
+        { label: '用用', value: '1' },
       ],
     },
     colProps: { span: 8 },
@@ -92,23 +101,32 @@ export const formSchema: FormSchema[] = [
     colProps: { lg: 24, md: 24 },
   },
   {
-    field: 'menuName',
-    label: '菜单名称',
+    field: 'name',
+    label: '英文名称',
+    rules: [{ min: 1, max: 100, message: 'Length should be 1 to 10', trigger: 'blur' }],
     component: 'Input',
     required: true,
   },
-
+  {
+    field: 'meta.title',
+    label: '中文名称',
+    rules: [{ min: 1, max: 100, message: 'Length should be 1 to 10', trigger: 'blur' }],
+    component: 'Input',
+    required: true,
+  },
   {
     field: 'parentMenu',
     label: '上级菜单',
     component: 'TreeSelect',
     componentProps: {
       fieldNames: {
-        label: 'menuName',
+        label: 'name',
         value: 'id',
       },
       getPopupContainer: () => document.body,
     },
+    ifShow: ({ values }) => !isDir(values.type),
+    required: true,
   },
 
   {
@@ -118,7 +136,7 @@ export const formSchema: FormSchema[] = [
     required: true,
   },
   {
-    field: 'icon',
+    field: 'meta.icon',
     label: '图标',
     component: 'IconPicker',
     required: true,

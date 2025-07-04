@@ -16,7 +16,10 @@
   import { formSchema } from './menu.data';
   import { BasicDrawer, useDrawerInner } from '@/components/Drawer';
 
-  import { getMenuList } from '@/api/demo/system';
+  import { getMenuList, createMenu } from '@/api/demo/system';
+  import { useMessage } from '@/hooks/web/useMessage';
+import { createAbstractBuilder } from 'typescript';
+import { ReloadOutlined } from '@ant-design/icons-vue';
 
   defineOptions({ name: 'MenuDrawer' });
 
@@ -49,17 +52,58 @@
   });
 
   const getTitle = computed(() => (!unref(isUpdate) ? '新增菜单' : '编辑菜单'));
-
   async function handleSubmit() {
-    try {
-      const values = await validate();
-      setDrawerProps({ confirmLoading: true });
-      // TODO custom api
-      console.log(values);
-      closeDrawer();
-      emit('success');
-    } finally {
-      setDrawerProps({ confirmLoading: false });
-    }
+  try {
+    const values = await validate();
+    setDrawerProps({ confirmLoading: true });
+    const { createMessage } = useMessage();
+    createMenu(values)
+      .then(() => {
+        createMessage.success('添加菜单成功');
+        closeDrawer();
+        emit('success'); // 必须放到这里，确保数据已更新
+      })
+      .catch(() => {
+        createMessage.error('添加菜单失败');
+      });
+  } finally {
+    setDrawerProps({ confirmLoading: false });
   }
+}
+  // async function handleSubmit() {
+  //   try {
+  //     const values = await validate();
+  //     setDrawerProps({ confirmLoading: true });
+  //     const { createMessage } = useMessage();
+  //     console.log('菜单提交值',values);
+  //     createMenu(values).then(() => {
+  //       createMessage.success('添加菜单成功');
+  //     })
+  //       .catch(() => {
+  //         // 你的其它逻辑
+  //         createMessage.error('添加菜单失败');
+  //       });
+  //     closeDrawer();
+  //     emit('success');
+  //   } finally {
+  //     setDrawerProps({ confirmLoading: false });
+  //   }
+  // }
+  // async function handleSubmit() {
+  //   try {
+  //     const values = await validate();
+  //     setDrawerProps({ confirmLoading: true });
+  //     const { createMessage } = useMessage();
+  //     console.log(values);
+  //     await createMenu(values);
+  //     createMessage.success('添加菜单成功');
+  //     closeDrawer();
+  //     emit('success');
+  //   } catch (e) {
+  //     const { createMessage } = useMessage();
+  //     createMessage.error('添加菜单失败');
+  //   } finally {
+  //     setDrawerProps({ confirmLoading: false });
+  //   }
+  // }
 </script>

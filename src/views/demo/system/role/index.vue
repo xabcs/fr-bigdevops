@@ -40,7 +40,9 @@
   import { useMessage } from '@/hooks/web/useMessage';
 
   defineOptions({ name: 'RoleManagement' });
-
+  import { useI18n } from '@/hooks/web/useI18n';
+// ...
+  const { t } = useI18n();
   const [registerDrawer, { openDrawer }] = useDrawer();
   const [registerTable, { reload }] = useTable({
     title: '角色列表',
@@ -70,6 +72,7 @@
   }
 
   function handleEdit(record: Recordable) {
+    console.log('编辑传入的record', record.id); // 这里必须能看到 id
     openDrawer(true, {
       record,
       isUpdate: true,
