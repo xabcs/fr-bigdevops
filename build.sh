@@ -1,0 +1,1 @@
+tar zvcf bigdevops_`date +%Y-%m-%d_%H-%M-%S`.tar.gz --exclude=bigdevops/node_modules bigdevops

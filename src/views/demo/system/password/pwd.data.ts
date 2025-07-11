@@ -37,6 +37,10 @@ export const formSchema: FormSchema[] = [
             if (value !== values.passwordNew) {
               return Promise.reject('两次输入的密码不一致!');
             }
+            //新密码不能与旧密码相同
+            if (value === values.passwordOld) {
+              return Promise.reject('新密码不能与旧密码相同');
+            }
             return Promise.resolve();
           },
         },

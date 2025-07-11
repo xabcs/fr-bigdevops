@@ -12,4 +12,6 @@ export enum RoleEnum {
   GITLAB_ADMIN = ' gitlab_admin',
   // 服务树管理员
   TREE_ADMIN = 'tree_admin',
+  GUEST = 'guest',
+  TEST_USER = 'test_user',
 }

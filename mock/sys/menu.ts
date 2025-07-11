@@ -186,15 +186,15 @@ const sysRoute = {
       },
       component: '/demo/system/menu/index',
     },
-    {
-      path: 'dept',
-      name: 'DeptManagement',
-      meta: {
-        title: 'routes.demo.system.dept',
-        ignoreKeepAlive: true,
-      },
-      component: '/demo/system/dept/index',
-    },
+    // {
+    //   path: 'dept',
+    //   name: 'DeptManagement',
+    //   meta: {
+    //     title: 'routes.demo.system.dept',
+    //     ignoreKeepAlive: true,
+    //   },
+    //   component: '/demo/system/dept/index',
+    // },
     {
       path: 'changePassword',
       name: 'ChangePassword',

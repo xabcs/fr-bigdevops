@@ -29,13 +29,14 @@
   import { BasicDrawer, useDrawerInner } from '@/components/Drawer';
   import { BasicTree, TreeItem } from '@/components/Tree';
 
-  import { getMenuList ,createRole } from '@/api/demo/system';
+  import { getMenuListAll ,createRole, updateRole } from '@/api/demo/system';
   import { useI18n } from '@/hooks/web/useI18n';
 
   const { t } = useI18n();
   const emit = defineEmits(['success', 'register']);
   const isUpdate = ref(true);
   const treeData = ref<TreeItem[]>([]);
+  const record = ref<any>({});
 
   const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
     labelWidth: 90,
@@ -58,8 +59,9 @@
     // 需要在setFieldsValue之前先填充treeData，否则Tree组件可能会报key not exist警告
     // console.log("当前权限",treeData.value);
     if (unref(treeData).length === 0) {
-      const menuList = await getMenuList();
+      const menuList = await getMenuListAll();
       treeData.value = translateTreeTitle(menuList);
+      console.log("treeData数据",treeData.value);
     }
     isUpdate.value = !!data?.isUpdate;
     console.log("当前操作",isUpdate.value);
@@ -91,21 +93,22 @@
     try {
       const values = await validate();
       setDrawerProps({ confirmLoading: true });
-      // TODO custom api
-      // console.log(values);
-      // closeDrawer();
-      // emit('success');
       const { createMessage } = useMessage();
-      console.log('提交的角色', values.roleName);
-      createRole(values)
+      let apiFunc = createRole;
+      let submitValues = values;
+      if (unref(isUpdate)) {
+        apiFunc = updateRole;
+        submitValues = { ...record.value, ...values };
+      }
+      apiFunc(submitValues)
         .then(() => {
-        createMessage.success('添加角色成功');
+          createMessage.success(unref(isUpdate) ? '编辑角色成功' : '添加角色成功');
           closeDrawer();
-          emit('success'); // 必须放到这里，确保数据已更新
+          emit('success');
         })
         .catch(() => {
-        createMessage.error('添加角色失败');
-      });
+          createMessage.error(unref(isUpdate) ? '编辑角色失败' : '添加角色失败');
+        });
     } finally {
       setDrawerProps({ confirmLoading: false });
     }

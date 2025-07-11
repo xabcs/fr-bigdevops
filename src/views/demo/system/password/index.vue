@@ -14,8 +14,13 @@
   import { BasicForm, useForm } from '@/components/Form';
 
   import { formSchema } from './pwd.data';
-
+  import { changePassword } from '@/api/demo/system';
+  import { useUserStore } from '@/store/modules/user';
+  // import { useRouter } from 'vue-router';
+  // const router = useRouter();
   defineOptions({ name: 'ChangePassword' });
+
+  const userStore = useUserStore();
 
   const [register, { validate, resetFields }] = useForm({
     size: 'large',
@@ -25,16 +30,32 @@
     schemas: formSchema,
   });
 
+  // async function handleSubmit() {
+  //   try {
+  //     const values = await validate();
+  //     const { passwordOld, passwordNew } = values;
+
+  //     // TODO custom api
+  //     console.log(passwordOld, passwordNew);
+  //     // const { router } = useRouter();
+  //     // router.push(pageEnum.BASE_LOGIN);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
   async function handleSubmit() {
     try {
       const values = await validate();
       const { passwordOld, passwordNew } = values;
-
-      // TODO custom api
-      console.log(passwordOld, passwordNew);
-      // const { router } = useRouter();
-      // router.push(pageEnum.BASE_LOGIN);
+      const res = await changePassword({
+        oldPassword: passwordOld,
+        newPassword: passwordNew,
+      });
+      console.log(res);
+      // 成功提示
+      userStore.logout();
     } catch (error) {
+      // 错误提示
       console.error(error);
     }
   }

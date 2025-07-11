@@ -15,7 +15,10 @@ import { initAppConfigStore } from '@/logics/initAppConfig';
 import { router, setupRouter } from '@/router';
 import { setupRouterGuard } from '@/router/guard';
 import { setupStore } from '@/store';
-
+// 1. 引入 ant-design-vue 组件库
+import Antd from 'ant-design-vue';
+// 2. 引入样式
+// import 'ant-design-vue/dist/antd.css';
 import App from './App.vue';
 
 async function bootstrap() {
@@ -57,7 +60,8 @@ async function bootstrap() {
 
   // https://next.router.vuejs.org/api/#isready
   // await router.isReady();
-
+// 4. 全局 use
+  app.use(Antd);
   app.mount('#app');
 }
 

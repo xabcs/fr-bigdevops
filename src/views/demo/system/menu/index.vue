@@ -43,7 +43,7 @@
   import { useMessage } from '@/hooks/web/useMessage';
   defineOptions({ name: 'MenuManagement' });
   import { useI18n } from '@/hooks/web/useI18n';
-  const { t } = useI18n();
+  import { usePermissionStore } from '@/store/modules/permission';
 
   const [registerDrawer, { openDrawer }] = useDrawer();
   const [registerTable, { reload, expandAll }] = useTable({
@@ -89,25 +89,23 @@
   //   console.log(record);
   // }
   function handleDelete(record: Recordable) {
-    console.log(record);
     const { createMessage } = useMessage();
     deleteMenu(record.id)
       .then(() => {
         createMessage.success('删除菜单成功');
         reload();
+        usePermissionStore().buildRoutesAction(); // 关键：刷新左侧菜单
       })
       .catch(() => {
-        // 你的其它逻辑
         createMessage.error('删除失败');
-
       })
       .finally(() => {
-        // 你的其它逻辑
         record.pendingStatus = false;
       });
   }
   function handleSuccess() {
     reload();
+    usePermissionStore().buildRoutesAction();
   }
 
   function onFetchSuccess() {

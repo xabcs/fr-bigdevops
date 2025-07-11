@@ -1,13 +1,42 @@
 <template>
   <PageWrapper dense contentFullHeight fixedHeight contentClass="flex">
-    <DeptTree class="w-1/4 xl:w-1/5" @select="handleSelect" />
+    <!-- <DeptTree class="w-1/4 xl:w-1/5" @select="handleSelect" /> -->
     <BasicTable @register="registerTable" class="w-3/4 xl:w-4/5" :searchInfo="searchInfo">
       <template #toolbar>
         <a-button type="primary" @click="handleCreate">新增账号</a-button>
         <a-button type="primary" @click="handleExport">导出账号</a-button>
       </template>
       <template #bodyCell="{ column, record }">
-        <template v-if="column.key === 'action'">
+        <template v-if="column.key === 'roles'">
+          <!-- <span>
+            {{ (record.roles || []).map(r => r.roleName || r.value).join(', ') }}
+          </span> -->
+          <!-- <div v-for="item in record.roles" :key="item.value">
+            <a-tag :color="GetTagColor(item.value)">{{ item.value }}</a-tag>
+          </div> -->
+          <!-- <div style="display: flex; gap: 4px">
+            <a-tag
+              v-for="item in record.roles"
+              :bordered="false"
+              :key="item.value"
+              :color="GetTagColor(item.value)"
+            >
+              {{ item.value }}
+            </a-tag>
+          </div> -->
+          <div style="display: flex; flex-wrap: wrap; gap: 4px; align-items: flex-start;">
+            <a-tag
+              v-for="item in record.roles"
+              :key="item.value"
+              :color="GetTagColor(item.value)"
+              :bordered="false"
+              style="margin-bottom: 4px;"
+            >
+              {{ item.value }}
+            </a-tag>
+          </div>
+        </template>
+        <template v-else-if="column.key === 'action'">
           <TableAction
             :actions="[
               {
@@ -42,7 +71,7 @@
   import { reactive } from 'vue';
 
   import { BasicTable, useTable, TableAction } from '@/components/Table';
-  import { getAccountList } from '@/api/demo/system';
+  import { deleteAccount, getAccountList } from '@/api/demo/system';
   import { PageWrapper } from '@/components/Page';
   import DeptTree from './DeptTree.vue';
 
@@ -51,12 +80,24 @@
 
   import { columns, searchFormSchema } from './account.data';
   import { useGo } from '@/hooks/web/usePage';
-
+  import { useMessage } from '@/hooks/web/useMessage';
   defineOptions({ name: 'AccountManagement' });
 
   const go = useGo();
   const [registerModal, { openModal }] = useModal();
   const searchInfo = reactive<Recordable>({});
+
+  function GetTagColor(role) {
+    switch (role) {
+      case 'super':
+        return 'error';
+      case 'guest':
+        return 'warning';
+      default:
+        return 'success';
+    }
+  }
+
   const [registerTable, { reload, updateTableDataRecord, getSearchInfo }] = useTable({
     title: '账号列表',
     api: getAccountList,
@@ -89,7 +130,7 @@
   }
 
   function handleEdit(record: Recordable) {
-    console.log(record);
+    console.log("编辑用户",record);
     openModal(true, {
       record,
       isUpdate: true,
@@ -97,7 +138,22 @@
   }
 
   function handleDelete(record: Recordable) {
-    console.log(record);
+    console.log("用户id",record.userId);
+    const { createMessage } = useMessage();
+    deleteAccount(record.userId)
+      .then(() => {
+        createMessage.success('删除用户成功')
+        reload();
+      })
+      .catch(() => {
+        // 你的其它逻辑
+        createMessage.error('删除用户失败')
+
+      })
+      .finally(() => {
+        // 你的其它逻辑
+        record.pendingStatus = false;
+      });
   }
 
   function handleExport() {
@@ -110,6 +166,7 @@
       // 注意：updateTableDataRecord要求表格的rowKey属性为string并且存在于每一行的record的keys中
       const result = updateTableDataRecord(values.id, values);
       console.log(result);
+      reload();
     } else {
       reload();
     }

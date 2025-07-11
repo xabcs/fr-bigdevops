@@ -7,17 +7,17 @@ import { useI18n } from '@/hooks/web/useI18n';
 const { t } = useI18n();
 export const columns: BasicColumn[] = [
   {
-    title: '英文名称',
-    dataIndex: 'name',
-    width: 200,
-    align: 'left',
-  },
-  {
     title: '中文名称',
     dataIndex: 'name',
     width: 200,
     align: 'left',
     customRender: ({ record }) => t(record.meta?.title || record.name),
+  },
+  {
+    title: '英文名称',
+    dataIndex: 'name',
+    width: 200,
+    align: 'left',
   },
   {
     title: '图标',
@@ -101,19 +101,20 @@ export const formSchema: FormSchema[] = [
     colProps: { lg: 24, md: 24 },
   },
   {
+    field: 'title',
+    label: '中文名称',
+    rules: [{ min: 1, max: 100, message: 'Length should be 1 to 10', trigger: 'blur' }],
+    component: 'Input',
+    required: true,
+  },
+  {
     field: 'name',
     label: '英文名称',
     rules: [{ min: 1, max: 100, message: 'Length should be 1 to 10', trigger: 'blur' }],
     component: 'Input',
     required: true,
   },
-  {
-    field: 'meta.title',
-    label: '中文名称',
-    rules: [{ min: 1, max: 100, message: 'Length should be 1 to 10', trigger: 'blur' }],
-    component: 'Input',
-    required: true,
-  },
+
   {
     field: 'parentMenu',
     label: '上级菜单',
@@ -121,7 +122,7 @@ export const formSchema: FormSchema[] = [
     componentProps: {
       fieldNames: {
         label: 'name',
-        value: 'id',
+        value: 'dbId',
       },
       getPopupContainer: () => document.body,
     },
@@ -136,11 +137,12 @@ export const formSchema: FormSchema[] = [
     required: true,
   },
   {
-    field: 'meta.icon',
+    field: 'icon',
     label: '图标',
     component: 'IconPicker',
     required: true,
-    ifShow: ({ values }) => !isButton(values.type),
+    // ifShow: ({ values }) => !isButton(values.type),
+    ifShow: ({ values }) => isDir(values.type),
   },
 
   {

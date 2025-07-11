@@ -16,17 +16,20 @@
   import { formSchema } from './menu.data';
   import { BasicDrawer, useDrawerInner } from '@/components/Drawer';
 
-  import { getMenuList, createMenu } from '@/api/demo/system';
+  import { getMenuList, createMenu, updateMenu } from '@/api/demo/system';
   import { useMessage } from '@/hooks/web/useMessage';
 import { createAbstractBuilder } from 'typescript';
 import { ReloadOutlined } from '@ant-design/icons-vue';
+import { useI18n } from '@/hooks/web/useI18n';
+// ...
+const { t } = useI18n();
 
   defineOptions({ name: 'MenuDrawer' });
 
   const emit = defineEmits(['success', 'register']);
 
   const isUpdate = ref(true);
-
+  const record = ref();
   const [registerForm, { resetFields, setFieldsValue, updateSchema, validate }] = useForm({
     labelWidth: 100,
     schemas: formSchema,
@@ -38,10 +41,15 @@ import { ReloadOutlined } from '@ant-design/icons-vue';
     resetFields();
     setDrawerProps({ confirmLoading: false });
     isUpdate.value = !!data?.isUpdate;
+    record.value = data.record;
 
     if (unref(isUpdate)) {
       setFieldsValue({
         ...data.record,
+        title: t(data.record.meta?.title || ''),      // 关键：meta.title -> title
+        icon: data.record.meta?.icon || '',        // meta.icon -> icon
+        orderNo: data.record.meta?.orderNo || 0,   // meta.orderNo -> orderNo
+        routePath: data.record.path || '',  // pathFinder -> pathFinder
       });
     }
     const treeData = await getMenuList();
@@ -57,14 +65,21 @@ import { ReloadOutlined } from '@ant-design/icons-vue';
     const values = await validate();
     setDrawerProps({ confirmLoading: true });
     const { createMessage } = useMessage();
-    createMenu(values)
+    console.log('record', record.value);
+    let menuFunc = createMenu;
+    let submitValues = values;
+    if (unref(isUpdate)) {
+      menuFunc = updateMenu;
+      submitValues = { ...record.value, ...values };
+    }
+    menuFunc(submitValues)
       .then(() => {
-        createMessage.success('添加菜单成功');
+        createMessage.success(`${getTitle}成功`);
         closeDrawer();
-        emit('success'); // 必须放到这里，确保数据已更新
+        emit('success', { isUpdate: unref(isUpdate), values: submitValues });
       })
       .catch(() => {
-        createMessage.error('添加菜单失败');
+        createMessage.error(`${getTitle}失败`);
       });
   } finally {
     setDrawerProps({ confirmLoading: false });
