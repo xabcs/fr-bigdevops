@@ -31,7 +31,7 @@ export function createFakeUserList() {
       homePath: '/dashboard/workbench',
       roles: [
         {
-          roleName: 'Tester',
+          roleName: '访客',
           value: RoleEnum.GUEST,
         },
         {
