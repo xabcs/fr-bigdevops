@@ -2,11 +2,13 @@ import { defHttp } from '@/utils/http/axios';
 import { LoginParams, LoginResultModel, GetUserInfoModel } from './model/userModel';
 
 import { ErrorMessageMode } from '#/axios';
-
+// .env.development
+// VITE_PROXY=[["/basic-api","http://localhost:9999"]]
+// VITE_GLOB_API_URL=/basic-api
 enum Api {
   Login = '/login',
   Logout = '/logout',
-  GetUserInfo = '/getUserInfo',
+  GetUserInfo = '/api/getUserInfo',
   GetPermCode = '/getPermCode',
   TestRetry = '/testRetry',
 }
