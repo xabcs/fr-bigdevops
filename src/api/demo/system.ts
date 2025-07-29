@@ -21,12 +21,16 @@ enum Api {
   IsAccountExist = '/system/accountExist',
   // DeptList = '/system/getDeptList',
   setRoleStatus = '/system/setRoleStatus',
-  MenuList = '/system/getMenuList',
-  MenuListAll = '/system/getMenuListAll',
+  // 获取菜单列表table数据的接口
+  MenuList = '/api/system/getMenuList',
+  // MenuList = '/system/getMenuList',
+  MenuListAll = '/api/system/getMenuListAll',
+  // MenuListAll = '/system/getMenuListAll',
   RolePageList = '/system/getRoleListByPage',
   GetAllRoleList = '/system/getAllRoleList',
   DeleteRole = '/system/deleteRole',
-  createMenu = '/system/createMenu',
+  createMenu = '/api/system/createMenu',
+  // createMenu = '/system/createMenu',
   deleteMenu = '/system/deleteMenu',
   createRole = '/system/createRole',
   updateRole = '/system/updateRole',
@@ -34,7 +38,8 @@ enum Api {
   deleteAccount = '/system/deleteAccount',
   updateAccount = '/system/updateAccount',
   DeptList = '/system/getDeptList',
-  updateMenu = '/system/updateMenu',
+  updateMenu = '/api/system/updateMenu',
+  // updateMenu = '/system/updateMenu',
   changePassword='/system/changePassword'
 
 

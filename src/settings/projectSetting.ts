@@ -29,7 +29,10 @@ const setting: ProjectConfig = {
   // Permission mode
   // Permission mode
   // permissionMode: PermissionModeEnum.ROUTE_MAPPING,
-  permissionMode: PermissionModeEnum.ROUTE_MAPPING,
+  // 根据前端权限切换俺就切换前后端权限模式
+  //permissionMode: PermissionModeEnum.ROUTE_MAPPING,
+  // 后端权限模式
+  permissionMode: PermissionModeEnum.BACK,
 
   // Permission-related cache is stored in sessionStorage or localStorage
   permissionCacheType: CacheTypeEnum.LOCAL,

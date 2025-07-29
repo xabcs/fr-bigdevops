@@ -2,7 +2,9 @@ import { defHttp } from '@/utils/http/axios';
 import { getMenuListResultModel } from './model/menuModel';
 
 enum Api {
-  GetMenuList = '/system/getMenuList',
+  //渲染菜单栏时获取菜单数据的接口
+  GetMenuList = '/api/system//getMenuList',
+  // GetMenuList = '/system/getMenuList',
 }
 
 /**

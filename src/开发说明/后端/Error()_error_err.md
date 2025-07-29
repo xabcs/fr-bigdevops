@@ -99,3 +99,19 @@ func main() {
     fmt.Println("结果:", result)
 }
 ```
+
+### 		这两个的区别
+- 	**sc.Logger.Error("登录失败", zap.Error(err))**
+   zap.Error(err) 结构化日志,会把错误信息作为一个独立的字段记录到日志中，便于后续检索和分析。
+  ```  
+  {
+    "msg": "登录失败: %v",
+    "error": "some error message"
+  }
+  ```
+
+- 	**sc.Logger.Error("登录失败: %v", err)**
+  - 直接写 err 只是把错误当作普通参数，格式化进字符串里，属于非结构化日志。
+```
+登录失败: some error message
+```

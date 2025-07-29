@@ -4,14 +4,19 @@ import { Tag } from 'ant-design-vue';
 import Icon from '@/components/Icon/Icon.vue';
 import { useI18n } from '@/hooks/web/useI18n';
 // ...
+
 const { t } = useI18n();
 export const columns: BasicColumn[] = [
   {
     title: '中文名称',
-    dataIndex: 'name',
+    dataIndex: 'title',
     width: 200,
     align: 'left',
     customRender: ({ record }) => t(record.meta?.title || record.name),
+  },
+  {
+    title: 'id',
+    dataIndex: 'id',
   },
   {
     title: '英文名称',
@@ -33,13 +38,18 @@ export const columns: BasicColumn[] = [
     width: 180,
   },
   {
-    title: '组件',
+    title: '组件路径',
     dataIndex: 'component',
   },
   {
-    title: '排序',
+    title: '路由路径',
+    dataIndex: 'path',
+  },
+  {
+    title: '排序序',
     dataIndex: 'orderNo',
-    width: 50,
+    width: 100,
+    // sorter: true,
   },
   {
     title: '状态',
@@ -78,7 +88,7 @@ export const searchFormSchema: FormSchema[] = [
     componentProps: {
       options: [
         { label: '启用', value: '0' },
-        { label: '用用', value: '1' },
+        { label: '禁用', value: '1' },
       ],
     },
     colProps: { span: 8 },
@@ -121,8 +131,8 @@ export const formSchema: FormSchema[] = [
     component: 'TreeSelect',
     componentProps: {
       fieldNames: {
-        label: 'name',
-        value: 'dbId',
+        label: 'title',
+        value: 'id',
       },
       getPopupContainer: () => document.body,
     },
@@ -146,7 +156,7 @@ export const formSchema: FormSchema[] = [
   },
 
   {
-    field: 'routePath',
+    field: 'path',
     label: '路由地址',
     component: 'Input',
     required: true,
@@ -156,7 +166,8 @@ export const formSchema: FormSchema[] = [
     field: 'component',
     label: '组件路径',
     component: 'Input',
-    ifShow: ({ values }) => isMenu(values.type),
+    required: true,
+    ifShow: ({ values }) => !isButton(values.type),
   },
   {
     field: 'permission',

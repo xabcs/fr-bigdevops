@@ -551,275 +551,275 @@ let dbMenuList = [
 // },
 
 ]
-let fakeMenuList = [
-  {
-    "id": "0",
-    "path": "/dashboard",
-    "name": "Dashboard",
-    "component": "LAYOUT",
-    "redirect": "/dashboard/analysis",
-    "orderNo": 1,
-    "meta": {
-        "title": "routes.dashboard.dashboard",
-        "hideChildrenInMenu": true,
-        "icon": "bx:bx-home",
-        "roles": ["guest", "super", "admin"] // 允许 guest 访问b
+// let fakeMenuList = [
+//   {
+//     "id": "0",
+//     "path": "/dashboard",
+//     "name": "Dashboard",
+//     "component": "LAYOUT",
+//     "redirect": "/dashboard/analysis",
+//     "orderNo": 1,
+//     "meta": {
+//         "title": "routes.dashboard.dashboard",
+//         "hideChildrenInMenu": true,
+//         "icon": "bx:bx-home",
+//         "roles": ["guest", "super", "admin"] // 允许 guest 访问b
 
-    },
-    "children": [
-        {
-            "id": "0-0",
-            "path": "analysis",
-            "name": "Analysis",
-            "component": "/dashboard/analysis/index",
-            "meta": {
-                "hideMenu": true,
-                "hideBreadcrumb": true,
-                "title": "routes.dashboard.analysis",
-                "currentActiveMenu": "/dashboard",
-                "icon": "bx:bx-home",
-                "roles": ["guest", "super", "admin"] // 允许 guest 访问
-            }
-        },
-        {
-            "id": "0-1",
-            "path": "workbench",
-            "name": "Workbench",
-            "component": "/dashboard/workbench/index",
-            "meta": {
-                "hideMenu": true,
-                "hideBreadcrumb": true,
-                "title": "routes.dashboard.workbench",
-                "currentActiveMenu": "/dashboard",
-                "icon": "bx:bx-home",
-                "roles": ["guest", "super", "admin"] // 允许 guest 访问
-            }
-        }
-    ]
-},
-{
-    "id": "1",
-    "path": "/permission",
-    "name": "Permission",
-    "component": "LAYOUT",
-    "redirect": "/permission/front/page",
-    "orderNo": 2,
-    "meta": {
-        "icon": "carbon:user-role",
-        "title": "routes.demo.permission.permission",
-        "roles": ["guest", "super", "admin"] // 允许 guest 访问
-    },
-    "children": [
-        {
-            "id": "1-0",
-            "path": "back",
-            "name": "PermissionBackDemo",
-            "meta": {
-                "title": "routes.demo.permission.back",
-                "roles": ["guest", "super", "admin"] // 允许 guest 访问
+//     },
+//     "children": [
+//         {
+//             "id": "0-0",
+//             "path": "analysis",
+//             "name": "Analysis",
+//             "component": "/dashboard/analysis/index",
+//             "meta": {
+//                 "hideMenu": true,
+//                 "hideBreadcrumb": true,
+//                 "title": "routes.dashboard.analysis",
+//                 "currentActiveMenu": "/dashboard",
+//                 "icon": "bx:bx-home",
+//                 "roles": ["guest", "super", "admin"] // 允许 guest 访问
+//             }
+//         },
+//         {
+//             "id": "0-1",
+//             "path": "workbench",
+//             "name": "Workbench",
+//             "component": "/dashboard/workbench/index",
+//             "meta": {
+//                 "hideMenu": true,
+//                 "hideBreadcrumb": true,
+//                 "title": "routes.dashboard.workbench",
+//                 "currentActiveMenu": "/dashboard",
+//                 "icon": "bx:bx-home",
+//                 "roles": ["guest", "super", "admin"] // 允许 guest 访问
+//             }
+//         }
+//     ]
+// },
+// {
+//     "id": "1",
+//     "path": "/permission",
+//     "name": "Permission",
+//     "component": "LAYOUT",
+//     "redirect": "/permission/front/page",
+//     "orderNo": 2,
+//     "meta": {
+//         "icon": "carbon:user-role",
+//         "title": "routes.demo.permission.permission",
+//         "roles": ["guest", "super", "admin"] // 允许 guest 访问
+//     },
+//     "children": [
+//         {
+//             "id": "1-0",
+//             "path": "back",
+//             "name": "PermissionBackDemo",
+//             "meta": {
+//                 "title": "routes.demo.permission.back",
+//                 "roles": ["guest", "super", "admin"] // 允许 guest 访问
 
-            },
-            "children": [
-                {
-                    "id": "1-0-0",
-                    "path": "page",
-                    "name": "BackAuthPage",
-                    "component": "/demo/permission/back/index",
-                    "meta": {
-                        "title": "routes.demo.permission.backPage",
-                        "roles": ["guest", "super", "admin"] // 允许 guest 访问
-                    }
-                },
-                {
-                    "id": "1-0-1",
-                    "path": "btn",
-                    "name": "BackAuthBtn",
-                    "component": "/demo/permission/back/Btn",
-                    "meta": {
-                        "title": "routes.demo.permission.backBtn",
-                        "roles": ["guest", "super", "admin"] // 允许 guest 访问
-                    }
-                }
-            ]
-        }
-    ]
-},
-{
-    "id": "2",
-    "path": "/level",
-    "name": "Level",
-    "component": "LAYOUT",
-    "redirect": "/level/menu1/menu1-1",
-    "orderNo": 3,
-    "meta": {
-        "icon": "carbon:user-role",
-        "title": "routes.demo.level.level",
-        "roles": ["guest", "super", "admin"] // 允许 guest 访问
-    },
-    "children": [
-        {
-            "id": "2-0",
-            "path": "menu1",
-            "name": "Menu1Demo",
-            "meta": {
-                "title": "Menu1"
-            },
-            "children": [
-                {
-                    "id": "2-0-0",
-                    "path": "menu1-1",
-                    "name": "Menu11Demo",
-                    "meta": {
-                        "title": "Menu1-1"
-                    },
-                    "children": [
-                        {
-                              "id": "2-0-0-0",
-                            "path": "menu1-1-1",
-                            "name": "Menu111Demo",
-                            "component": "/demo/level/Menu111",
-                            "meta": {
-                                "title": "Menu111"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "id": "2-0-1",
-                    "path": "menu1-2",
-                    "name": "Menu12Demo",
-                    "component": "/demo/level/Menu12",
-                    "meta": {
-                        "title": "Menu1-2"
-                    }
-                }
-            ]
-        },
-        {
-            "id": "2-1",
-            "path": "menu2",
-            "name": "Menu2Demo",
-            "component": "/demo/level/Menu2",
-            "meta": {
-                "title": "Menu2"
-            }
-        }
-    ]
-},
-{
-    "id": "3",
-    "path": "/system",
-    "name": "System",
-    "component": "LAYOUT",
-    // "redirect": "/system/account",
-    "orderNo": 5,
-    "meta": {
-        "icon": "ion:settings-outline",
-        "title": "routes.demo.system.moduleName",
-        "roles": ["guest", "super", "admin"] // 允许 guest 访问
-    },
-    "children": [
-        {
-            "id": "3-0",
-            "path": "account",
-            "name": "AccountManagement",
-            "meta": {
-                "title": "routes.demo.system.account",
-                "ignoreKeepAlive": true,
-                "roles": ["guest", "super", "admin"] 
-            },
-            "component": "/demo/system/account/index"
-        },
-        {
-            "id": "3-1",
-            "path": "account_detail/:id",
-            "name": "AccountDetail",
-            "meta": {
-                "hideMenu": true,
-                "title": "routes.demo.system.account_detail",
-                "ignoreKeepAlive": true,
-                "showMenu": false,
-                "currentActiveMenu": "/system/account"
-            },
-            "component": "/demo/system/account/AccountDetail"
-        },
-        {
-            "id": "3-2",
-            "path": "role",
-            "name": "RoleManagement",
-            "meta": {
-                "title": "routes.demo.system.role",
-                "ignoreKeepAlive": true
-            },
-            "component": "/demo/system/role/index"
-        },
-        {
-            "id": "3-3",
-            "path": "menu",
-            "name": "MenuManagement",
-            "meta": {
-                "title": "routes.demo.system.menu",
-                "ignoreKeepAlive": true
-            },
-            "component": "/demo/system/menu/index"
-        },
-        // {
-        //     "id": "3-4",
-        //     "path": "dept",
-        //     "name": "DeptManagement",
-        //     "meta": {
-        //         "title": "routes.demo.system.dept",
-        //         "ignoreKeepAlive": true
-        //     },
-        //     "component": "/demo/system/dept/index"
-        // },
-        {
-            "path": "changePassword",
-            "name": "ChangePassword",
-            "meta": {
-                "title": "routes.demo.system.password",
-                "ignoreKeepAlive": true
-            },
-            "component": "/demo/system/password/index"
-        }
-    ]
-},
-{
-    "id": "4",
-    "path": "/link",
-    "name": "Link",
-    "component": "LAYOUT",
-    "orderNo": 4,
-    "meta": {
-        "icon": "ion:tv-outline",
-        "title": "routes.demo.iframe.frame",
-        "roles": ["guest", "super", "admin"] // 允许 guest 访问
-    },
-    "children": [
-        {
-            "id": "4-0",
-            "path": "doc",
-            "name": "Doc",
-            "meta": {
-                "title": "routes.demo.iframe.doc",
-                "frameSrc": "https://doc.vvbin.cn/",
-                "roles": ["guest", "super", "admin"] // 允许 guest 访问
-            }
-        },
-        {   
-            "id": "4-1",
-            "path": "https://doc.vvbin.cn/",
-            "name": "DocExternal",
-            "component": "LAYOUT",
-            "meta": {
-                "title": "routes.demo.iframe.docExternal",
-                "roles": ["guest", "super", "admin"] // 允许 guest 访问
-            }
-        }
-    ]
-},
+//             },
+//             "children": [
+//                 {
+//                     "id": "1-0-0",
+//                     "path": "page",
+//                     "name": "BackAuthPage",
+//                     "component": "/demo/permission/back/index",
+//                     "meta": {
+//                         "title": "routes.demo.permission.backPage",
+//                         "roles": ["guest", "super", "admin"] // 允许 guest 访问
+//                     }
+//                 },
+//                 {
+//                     "id": "1-0-1",
+//                     "path": "btn",
+//                     "name": "BackAuthBtn",
+//                     "component": "/demo/permission/back/Btn",
+//                     "meta": {
+//                         "title": "routes.demo.permission.backBtn",
+//                         "roles": ["guest", "super", "admin"] // 允许 guest 访问
+//                     }
+//                 }
+//             ]
+//         }
+//     ]
+// },
+// {
+//     "id": "2",
+//     "path": "/level",
+//     "name": "Level",
+//     "component": "LAYOUT",
+//     "redirect": "/level/menu1/menu1-1",
+//     "orderNo": 3,
+//     "meta": {
+//         "icon": "carbon:user-role",
+//         "title": "routes.demo.level.level",
+//         "roles": ["guest", "super", "admin"] // 允许 guest 访问
+//     },
+//     "children": [
+//         {
+//             "id": "2-0",
+//             "path": "menu1",
+//             "name": "Menu1Demo",
+//             "meta": {
+//                 "title": "Menu1"
+//             },
+//             "children": [
+//                 {
+//                     "id": "2-0-0",
+//                     "path": "menu1-1",
+//                     "name": "Menu11Demo",
+//                     "meta": {
+//                         "title": "Menu1-1"
+//                     },
+//                     "children": [
+//                         {
+//                               "id": "2-0-0-0",
+//                             "path": "menu1-1-1",
+//                             "name": "Menu111Demo",
+//                             "component": "/demo/level/Menu111",
+//                             "meta": {
+//                                 "title": "Menu111"
+//                             }
+//                         }
+//                     ]
+//                 },
+//                 {
+//                     "id": "2-0-1",
+//                     "path": "menu1-2",
+//                     "name": "Menu12Demo",
+//                     "component": "/demo/level/Menu12",
+//                     "meta": {
+//                         "title": "Menu1-2"
+//                     }
+//                 }
+//             ]
+//         },
+//         {
+//             "id": "2-1",
+//             "path": "menu2",
+//             "name": "Menu2Demo",
+//             "component": "/demo/level/Menu2",
+//             "meta": {
+//                 "title": "Menu2"
+//             }
+//         }
+//     ]
+// },
+// {
+//     "id": "3",
+//     "path": "/system",
+//     "name": "System",
+//     "component": "LAYOUT",
+//     // "redirect": "/system/account",
+//     "orderNo": 5,
+//     "meta": {
+//         "icon": "ion:settings-outline",
+//         "title": "routes.demo.system.moduleName",
+//         "roles": ["guest", "super", "admin"] // 允许 guest 访问
+//     },
+//     "children": [
+//         {
+//             "id": "3-0",
+//             "path": "account",
+//             "name": "AccountManagement",
+//             "meta": {
+//                 "title": "routes.demo.system.account",
+//                 "ignoreKeepAlive": true,
+//                 "roles": ["guest", "super", "admin"] 
+//             },
+//             "component": "/demo/system/account/index"
+//         },
+//         {
+//             "id": "3-1",
+//             "path": "account_detail/:id",
+//             "name": "AccountDetail",
+//             "meta": {
+//                 "hideMenu": true,
+//                 "title": "routes.demo.system.account_detail",
+//                 "ignoreKeepAlive": true,
+//                 "showMenu": false,
+//                 "currentActiveMenu": "/system/account"
+//             },
+//             "component": "/demo/system/account/AccountDetail"
+//         },
+//         {
+//             "id": "3-2",
+//             "path": "role",
+//             "name": "RoleManagement",
+//             "meta": {
+//                 "title": "routes.demo.system.role",
+//                 "ignoreKeepAlive": true
+//             },
+//             "component": "/demo/system/role/index"
+//         },
+//         {
+//             "id": "3-3",
+//             "path": "menu",
+//             "name": "MenuManagement",
+//             "meta": {
+//                 "title": "routes.demo.system.menu",
+//                 "ignoreKeepAlive": true
+//             },
+//             "component": "/demo/system/menu/index"
+//         },
+//         // {
+//         //     "id": "3-4",
+//         //     "path": "dept",
+//         //     "name": "DeptManagement",
+//         //     "meta": {
+//         //         "title": "routes.demo.system.dept",
+//         //         "ignoreKeepAlive": true
+//         //     },
+//         //     "component": "/demo/system/dept/index"
+//         // },
+//         {
+//             "path": "changePassword",
+//             "name": "ChangePassword",
+//             "meta": {
+//                 "title": "routes.demo.system.password",
+//                 "ignoreKeepAlive": true
+//             },
+//             "component": "/demo/system/password/index"
+//         }
+//     ]
+// },
+// {
+//     "id": "4",
+//     "path": "/link",
+//     "name": "Link",
+//     "component": "LAYOUT",
+//     "orderNo": 4,
+//     "meta": {
+//         "icon": "ion:tv-outline",
+//         "title": "routes.demo.iframe.frame",
+//         "roles": ["guest", "super", "admin"] // 允许 guest 访问
+//     },
+//     "children": [
+//         {
+//             "id": "4-0",
+//             "path": "doc",
+//             "name": "Doc",
+//             "meta": {
+//                 "title": "routes.demo.iframe.doc",
+//                 "frameSrc": "https://doc.vvbin.cn/",
+//                 "roles": ["guest", "super", "admin"] // 允许 guest 访问
+//             }
+//         },
+//         {   
+//             "id": "4-1",
+//             "path": "https://doc.vvbin.cn/",
+//             "name": "DocExternal",
+//             "component": "LAYOUT",
+//             "meta": {
+//                 "title": "routes.demo.iframe.docExternal",
+//                 "roles": ["guest", "super", "admin"] // 允许 guest 访问
+//             }
+//         }
+//     ]
+// },
 
-]
+// ]
 let FakeRoleList = [
   {
     id: 1,
@@ -830,8 +830,8 @@ let FakeRoleList = [
     createTime: '@datetime',
     remark: '超级管理员',
     // menu: ['1', '3','3-1','3-2'],
-    // menu: ['1','1-1','2', '2-1','2-1-1','2-2','2-2-1','3','3-1','3-2','3-3','3-4'],
-    menu: ['1','1-1','2-2-1','3','3-1','3-2','3-3','3-4'],
+    menu: ['1','1-1','2', '2-1','2-1-1','2-2','2-2-1','3','3-1','3-2','3-3','3-4'],
+    // menu: ['1','1-1','2-2-1','3','3-1','3-2','3-3','3-4'],
     //menu: ['3','3-1','3-2','3-3','3-4'],
     status: '1',
   },
@@ -1183,7 +1183,7 @@ function buildMenuTree(list, parentId = null) {
       return menu;
     })
     // 只保留有children的目录，或者本身不是目录（type !== '0'）
-    .filter(item => item.type !== '0' || (item.children && item.children.length));
+    // .filter(item => item.type !== '0' || (item.children && item.children.length));
 }
 
 function getNextId(list, parentMenu) {
@@ -1630,7 +1630,7 @@ export default [
         dbId: newDbId,
         parentMenu: body.parentMenu || null,
       };
-  
+      console.log('新菜单', newMenu);
       dbMenuList.push(newMenu);
       return resultSuccess(newMenu);
     },
@@ -1657,91 +1657,68 @@ export default [
       return resultSuccess({ id });
     },
   },
-  // {
-  //   url: '/basic-api/system/deleteMenu',
-  //   timeout: 500,
-  //   method: 'delete',
-  //   response: ({ body }) => {
-  //     const { id } = body;
-  //     // 递归删除菜单项
-  //     function deleteMenuById(list, id) {
-  //       for (let i = 0; i < list.length; i++) {
-  //         if (list[i].id === id) {
-  //           list.splice(i, 1);
-  //           return true;
-  //         }
-  //         if (list[i].children && Array.isArray(list[i].children)) {
-  //           const deleted = deleteMenuById(list[i].children, id);
-  //           if (deleted) return true;
-  //         }
-  //       }
-  //       return false;
-  //     }
-  //     const deleted = deleteMenuById(fakeMenuList, id);
-  //     if (!deleted) return resultError('菜单未找到！');
-  //     return resultSuccess({ id });
+
+
+  //根据当前用户的信息角色获取菜单
+  //  {
+  //   url: '/basic-api/system/getMenuListAll',
+  //   timeout: 100,
+  //   method: 'get',
+  //   response: () => {
+  //     // console.log('dbmenulist列表:', JSON.stringify(fakeMenuList, null, 2));
+  //     const menuTree = buildMenuTree(dbMenuList);
+  //     // console.log('menuTree列表:', JSON.stringify(menuTree, null, 2));
+  //     return resultSuccess(menuTree);
   //   },
   // },
-  //根据当前用户的信息角色获取菜单
-   {
-    url: '/basic-api/system/getMenuListAll',
-    timeout: 100,
-    method: 'get',
-    response: () => {
-      // console.log('dbmenulist列表:', JSON.stringify(fakeMenuList, null, 2));
-      const menuTree = buildMenuTree(dbMenuList);
-      // console.log('menuTree列表:', JSON.stringify(menuTree, null, 2));
-      return resultSuccess(menuTree);
-    },
-  },
-  {
-    url: '/basic-api/system/getMenuList',
-    timeout: 100,
-    method: 'get',
-    response: ({ headers }) => {
-      // 1. 解析 token
-      let token = '';
-      if (headers && headers.authorization) {
-        // 支持 Bearer token 格式
-        token = headers.authorization.replace(/^Bearer\s+/i, '');
-      }
-      // 2. 查找当前用户
-      const user = userList.find(u => u.token === token);
-      if (!user) {
-        return resultError('未登录或token无效');
-      }
-      // 3. 获取用户所有角色的 menu 权限
-      let menuIds: string[] = [];
-      user.roles.forEach(role => {
-        const roleObj = FakeRoleList.find(r => r.roleValue === role.value);
-        if (roleObj && Array.isArray(roleObj.menu)) {
-          menuIds = menuIds.concat(roleObj.menu.filter((id): id is string => typeof id === 'string'));
-        }
-      });
-      menuIds = Array.from(new Set(menuIds));
-      // 4. 自动补齐所有父级目录
-      function collectWithParents(ids: string[], allMenus: typeof dbMenuList) {
-        const set = new Set(ids);
-        let changed = true;
-        while (changed) {
-          changed = false;
-          for (const item of allMenus) {
-            if (set.has(item.id) && item.parentMenu && !set.has(item.parentMenu)) {
-              set.add(item.parentMenu);
-              changed = true;
-            }
-          }
-        }
-        return Array.from(set);
-      }
-      const allMenuIds = collectWithParents(menuIds, dbMenuList);
-      // 5. 过滤菜单
-      const filteredMenu = dbMenuList.filter(item => allMenuIds.includes(item.id));
-      // 6. 转树
-      const menuTree = buildMenuTree(filteredMenu);
-      return resultSuccess(menuTree);
-    },
-  },
+  // {
+  //   url: '/basic-api/system/getMenuList',
+  //   timeout: 100,
+  //   method: 'get',
+  //   response: ({ headers }) => {
+  //     // 1. 解析 token
+  //     let token = '';
+  //     if (headers && headers.authorization) {
+  //       // 支持 Bearer token 格式
+  //       token = headers.authorization.replace(/^Bearer\s+/i, '');
+  //     }
+  //     // 2. 查找当前用户
+  //     const user = userList.find(u => u.token === token);
+  //     if (!user) {
+  //       return resultError('未登录或token无效');
+  //     }
+  //     // 3. 获取用户所有角色的 menu 权限
+  //     let menuIds: string[] = [];
+  //     user.roles.forEach(role => {
+  //       const roleObj = FakeRoleList.find(r => r.roleValue === role.value);
+  //       if (roleObj && Array.isArray(roleObj.menu)) {
+  //         menuIds = menuIds.concat(roleObj.menu.filter((id): id is string => typeof id === 'string'));
+  //       }
+  //     });
+  //     menuIds = Array.from(new Set(menuIds));
+  //     // 4. 自动补齐所有父级目录
+  //     function collectWithParents(ids: string[], allMenus: typeof dbMenuList) {
+  //       const set = new Set(ids);
+  //       let changed = true;
+  //       while (changed) {
+  //         changed = false;
+  //         for (const item of allMenus) {
+  //           if (set.has(item.id) && item.parentMenu && !set.has(item.parentMenu)) {
+  //             set.add(item.parentMenu);
+  //             changed = true;
+  //           }
+  //         }
+  //       }
+  //       return Array.from(set);
+  //     }
+  //     const allMenuIds = collectWithParents(menuIds, dbMenuList);
+  //     // 5. 过滤菜单
+  //     const filteredMenu = dbMenuList.filter(item => allMenuIds.includes(item.id));
+  //     // 6. 转树
+  //     const menuTree = buildMenuTree(filteredMenu);
+  //     return resultSuccess(menuTree);
+  //   },
+  // },
   {
     url: '/basic-api/system/updateRole',
     timeout: 500,
@@ -1760,103 +1737,26 @@ export default [
       return resultSuccess({ ...FakeRoleList[idx] });
     },
   },
+  //使用后端接口
   // {
   //   url: '/basic-api/system/updateMenu',
   //   timeout: 500,
   //   method: 'post',
   //   response: ({ body }) => {
-  //     const { id, ...menu } = body;
+  //     const { id, ...update } = body;
   //     if (!id) return resultError('缺少菜单id');
-  //     // 递归查找并更新菜单
-  //     function updateMenuById(list, id, menu) {
-  //       for (let i = 0; i < list.length; i++) {
-  //         if (list[i].id === id) {
-  //           list[i] = { ...list[i], ...menu };
-  //           return list[i];
-  //         }
-  //         if (list[i].children && Array.isArray(list[i].children)) {
-  //           const updated = updateMenuById(list[i].children, id, menu);
-  //           if (updated) return updated;
-  //         }
-  //       }
-  //       return null;
-  //     }
-  //     const updated = updateMenuById(fakeMenuList, id, menu);
-  //     if (!updated) return resultError('菜单未找到！');
-  //     return resultSuccess(updated);
-  //   },
-  // },
-  // {
-  //   url: '/basic-api/system/updateMenu',
-  //   timeout: 500,
-  //   method: 'post',
-  //   response: ({ body }) => {
-  //     const { id, ...rest } = body;
-  //     if (!id) return resultError('缺少菜单id');
-  //     // show 字段自动转换为 hideMenu
-  //     const hideMenu = rest.show === '1';
-  //     // 更新菜单
   //     const idx = dbMenuList.findIndex(item => item.id === id);
   //     if (idx === -1) return resultError('菜单未找到！');
-  //     let updateObj = {
+  //     // 自动转换 show -> hideMenu
+  //     const hideMenu = update.show === '1';
+  //     dbMenuList[idx] = {
   //       ...dbMenuList[idx],
-  //       ...rest,
+  //       ...update,
   //       hideMenu,
+  //       id: dbMenuList[idx].id,
+  //       dbId: dbMenuList[idx].dbId,
   //     };
-  //     // type 逻辑优化
-  //     const oldType = dbMenuList[idx].type;
-  //     if (rest.type !== oldType) {
-  //       // 重新生成id，按type规则
-  //       let newId;
-  //       if (rest.type === '0') {
-  //         // 顶级目录
-  //         newId = getNextId(dbMenuList, undefined);
-  //         updateObj.parentMenu = undefined;
-  //       } else if (rest.type === '1') {
-  //         // 菜单，parentMenu 必须有
-  //         if (!rest.parentMenu) return resultError('菜单类型必须指定parentMenu');
-  //         newId = getNextId(dbMenuList, rest.parentMenu);
-  //       } else if (rest.type === '2') {
-  //         // 按钮，parentMenu 必须有
-  //         if (!rest.parentMenu) return resultError('按钮类型必须指定parentMenu');
-  //         newId = getNextId(dbMenuList, rest.parentMenu);
-  //       }
-  //       // 更新所有子菜单的 parentMenu
-  //       dbMenuList.forEach(item => {
-  //         if (item.parentMenu === updateObj.id) item.parentMenu = newId;
-  //       });
-  //       console.log('更新后的菜单ID:', newId)
-  //       // 更新自身id
-  //       updateObj.id = newId;
-  //     }
-  //     dbMenuList[idx] = updateObj;
   //     return resultSuccess(dbMenuList[idx]);
-  //   },
-  // },
-  // {
-  //   url: '/basic-api/system/updateRole',
-  //   timeout: 500,
-  //   method: 'post',
-  //   response: ({ body }) => {
-  //     const { id, ...role } = body;
-  //     if (!id) return resultError('缺少角色id');
-  //     const idx = FakeRoleList.findIndex(item => item.id === Number(id));
-  //     if (idx === -1) return resultError('角色未找到');
-  //     FakeRoleList[idx] = { ...FakeRoleList[idx], ...role, id: Number(id) };
-  //     return resultSuccess({ ...FakeRoleList[idx] });
-  //   },
-  // },
-  // {
-  //   url: '/basic-api/system/updateRole',
-  //   timeout: 500,
-  //   method: 'post',
-  //   response: ({ body }) => {
-  //     const { id, ...role } = body;
-  //     if (!id) return resultError('缺少角色id');
-  //     const idx = FakeRoleList.findIndex(item => item.id === Number(id));
-  //     if (idx === -1) return resultError('角色未找到');
-  //     FakeRoleList[idx] = { ...FakeRoleList[idx], ...role, id: Number(id) };
-  //     return resultSuccess({ ...FakeRoleList[idx] });
   //   },
   // },
   {

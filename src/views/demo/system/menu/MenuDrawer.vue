@@ -48,11 +48,12 @@ const { t } = useI18n();
         ...data.record,
         title: t(data.record.meta?.title || ''),      // 关键：meta.title -> title
         icon: data.record.meta?.icon || '',        // meta.icon -> icon
-        orderNo: data.record.meta?.orderNo || 0,   // meta.orderNo -> orderNo
-        routePath: data.record.path || '',  // pathFinder -> pathFinder
+        // orderNo: data.record.orderNo || 0,
+        // routePath: data.record.path || '',  // pathFinder -> pathFinder
       });
     }
-    const treeData = await getMenuList();
+    // const treeData = await getMenuList();
+    const treeData = fixTreeLabel(await getMenuList());
     updateSchema({
       field: 'parentMenu',
       componentProps: { treeData },
@@ -74,12 +75,12 @@ const { t } = useI18n();
     }
     menuFunc(submitValues)
       .then(() => {
-        createMessage.success(`${getTitle}成功`);
+        createMessage.success(`${getTitle.value}成功`);
         closeDrawer();
         emit('success', { isUpdate: unref(isUpdate), values: submitValues });
       })
       .catch(() => {
-        createMessage.error(`${getTitle}失败`);
+        createMessage.error(`${getTitle.value}失败`);
       });
   } finally {
     setDrawerProps({ confirmLoading: false });
@@ -121,4 +122,12 @@ const { t } = useI18n();
   //     setDrawerProps({ confirmLoading: false });
   //   }
   // }
+
+  function fixTreeLabel(tree) {
+    return tree.map(item => ({
+      ...item,
+      title: item.meta?.title ? t(item.meta.title) : (item.title || item.name || '---'),
+      children: item.children ? fixTreeLabel(item.children) : undefined,
+    }));
+}
 </script>

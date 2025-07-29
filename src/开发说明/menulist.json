@@ -1,0 +1,126 @@
+{
+    "code": 0,
+    "result": [
+        {
+            "id": "1",
+            "dbId": "1",
+            "path": "/dashboard",
+            "name": "Dashboard",
+            "component": "LAYOUT",
+            "redirect": "/dashboard/analysis",
+            "type": "0",
+            "title":"routes.dashboard.dashboard",
+            "hideMenu": false,
+            "meta": {
+                "title": "routes.dashboard.dashboard",
+                "icon": "bx:bx-home",
+                "hideMenu": false,
+                "orderNo": 1
+            },
+            "children": [
+                {
+                    "id": "1-1",
+                    "dbId": "2",
+                    "path": "analysis",
+                    "name": "Analysis",
+                    "component": "/dashboard/analysis/index",
+                    "type": "1",
+                    "parentMenu": "1",
+                    "title": "routes.dashboard.analysis",
+                    "hideMenu": false,
+                    "meta": {
+                        "title": "routes.dashboard.analysis",
+                        "icon": "bx:bx-home",
+                        "hideMenu": false,
+                        "orderNo": 1
+                    }
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "dbId": "5",
+            "path": "/system",
+            "name": "System",
+            "component": "LAYOUT",
+            "redirect": "/system/account",
+            "type": "0",
+            "title": "系统管理",
+            "hideMenu": false,
+            "meta": {
+                "title": "系统管理",
+                "icon": "ion:settings-outline",
+                "hideMenu": false,
+                "orderNo": 4
+            },
+            "children": [
+                {
+                    "id": "3-3",
+                    "dbId": "9",
+                    "path": "role",
+                    "name": "RoleManagement",
+                    "component": "/demo/system/role/index",
+                    "parentMenu": "5",
+                    "type": "1",
+                    "title": "routes.demo.system.role",
+                    "hideMenu": false,
+                    "meta": {
+                        "title": "routes.demo.system.role",
+                        "hideMenu": false,
+                        "orderNo": 1
+                    }
+                },
+                {
+                    "id": "3-2",
+                    "dbId": "7",
+                    "path": "account",
+                    "name": "AccountManagement",
+                    "parentMenu": "5",
+                    "component": "/demo/system/account/index",
+                    "type": "1",
+                    "title": "routes.demo.system.account",
+                    "hideMenu": false,
+                    "meta": {
+                        "title": "routes.demo.system.account",
+                        "hideMenu": false,
+                        "orderNo": 2
+                    }
+                },
+                {
+                    "id": "3-1",
+                    "dbId": "6",
+                    "path": "menu",
+                    "name": "MenuManagement",
+                    "component": "/demo/system/menu/index",
+                    "type": "1",
+                    "title": "菜单管理",
+                    "hideMenu": false,
+                    "parentMenu": "5",
+                    "meta": {
+                        "title": "菜单管理",
+                        "hideMenu": false,
+                        "orderNo": 3
+                    }
+                },
+                {
+                    "id": "3-4",
+                    "dbId": "10",
+                    "path": "changePassword",
+                    "name": "ChangePassword",
+                    "component": "/demo/system/password/index",
+                    "parentMenu": "5",
+                    "type": "1",
+                    "title": "routes.demo.system.password",
+                    "hideMenu": false,
+                    "meta": {
+                        "title": "routes.demo.system.password",
+                        "hideMenu": false,
+                        "orderNo": 4
+                    }
+                }
+            ]
+        }
+    ],
+    "message": "ok",
+    "type": "success"
+}

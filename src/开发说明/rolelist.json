@@ -1,0 +1,109 @@
+{
+    "code": 0,
+    "result": {
+        "items": [
+            {
+                "id": 1,
+                "orderNo": 1,
+                "roleName": "超级管理员",
+                "email": "super@vvbin.cn",
+                "roleValue": "super",
+                "createTime": "2023-01-14 01:35:29",
+                "remark": "超级管理员",
+                "menu": [
+                    "1",
+                    "1-1",
+                    "2",
+                    "2-1",
+                    "2-1-1",
+                    "2-2",
+                    "2-2-1",
+                    "3",
+                    "3-1",
+                    "3-2",
+                    "3-3",
+                    "3-4"
+                ],
+                "status": "1"
+            },
+            {
+                "id": 2,
+                "orderNo": 2,
+                "roleName": "监控管理员",
+                "roleValue": "prom_admin",
+                "email": "prom@vvbin.cn",
+                "createTime": "1996-07-03 04:40:54",
+                "remark": "监控管理员",
+                "menu": [
+                    "0",
+                    "1",
+                    "2"
+                ],
+                "status": "1"
+            },
+            {
+                "id": 3,
+                "orderNo": 3,
+                "roleName": "cicd管理员",
+                "roleValue": "cicd_admin",
+                "email": "cicd@vvbin.cn",
+                "createTime": "2017-09-08 09:16:47",
+                "remark": "cicd管理员",
+                "menu": [
+                    "0",
+                    "1",
+                    "2"
+                ],
+                "status": "1"
+            },
+            {
+                "id": 4,
+                "orderNo": 4,
+                "roleName": "服务树管理员",
+                "roleValue": "tree_admin",
+                "email": "tree@vvbin.cn",
+                "createTime": "1998-02-14 00:47:52",
+                "remark": "服务树管理员",
+                "menu": [
+                    "0",
+                    "1",
+                    "2"
+                ],
+                "status": "1"
+            },
+            {
+                "id": 5,
+                "orderNo": 5,
+                "roleName": "k8s管理员",
+                "roleValue": "tree_admin",
+                "createTime": "2000-06-01 09:04:33",
+                "remark": "k8s管理员",
+                "menu": [
+                    "2"
+                ],
+                "status": "1"
+            },
+            {
+                "id": 6,
+                "orderNo": 6,
+                "roleName": "访客",
+                "roleValue": "guest",
+                "createTime": "1987-08-26 13:52:38",
+                "remark": "访客",
+                "menu": [
+                    "1",
+                    "1-1",
+                    "2",
+                    "2-1",
+                    "2-1-1",
+                    "2-2",
+                    "2-2-1"
+                ],
+                "status": "1"
+            }
+        ],
+        "total": 6
+    },
+    "message": "ok",
+    "type": "success"
+}

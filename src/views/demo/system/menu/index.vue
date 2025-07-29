@@ -41,15 +41,16 @@
 
   import { columns, searchFormSchema } from './menu.data';
   import { useMessage } from '@/hooks/web/useMessage';
-  defineOptions({ name: 'MenuManagement' });
   import { useI18n } from '@/hooks/web/useI18n';
   import { usePermissionStore } from '@/store/modules/permission';
+
+  defineOptions({ name: 'MenuManagement' });
 
   const [registerDrawer, { openDrawer }] = useDrawer();
   const [registerTable, { reload, expandAll }] = useTable({
     title: '菜单列表',
     api: getMenuList,
-  
+
     columns,
     formConfig: {
       labelWidth: 120,
@@ -109,7 +110,7 @@
   }
 
   function onFetchSuccess() {
-    // 演示默认展开所有表项
-    nextTick(expandAll);
+    // 默认不展开所有表项
+    // nextTick(expandAll);
   }
 </script>
