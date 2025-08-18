@@ -152,7 +152,7 @@ export const formSchema: FormSchema[] = [
     component: 'IconPicker',
     required: true,
     // ifShow: ({ values }) => !isButton(values.type),
-    ifShow: ({ values }) => isDir(values.type),
+    ifShow: ({ values }) => !isDir(values.type),
   },
 
   {

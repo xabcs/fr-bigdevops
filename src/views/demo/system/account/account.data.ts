@@ -42,7 +42,7 @@ export const columns: BasicColumn[] = [
   {
     title: '创建时间',
     dataIndex: 'createTime',
-    width: 180,
+    width: 150,
   },
   {
     title: '角色',
@@ -51,7 +51,12 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '备注',
-    dataIndex: 'remark',
+    dataIndex: 'desc',
+    width: 200,
+  },
+  {
+    title: '家目录',
+    dataIndex: 'homePath',
     width: 200,
   },
   // {
@@ -75,7 +80,7 @@ export const searchFormSchema: FormSchema[] = [
     colProps: { span: 8 },
   },
   {
-    field: 'realName',
+    field: 'modal_form_item_realName',
     label: '昵称',
     component: 'Input',
     colProps: { span: 8 },
@@ -134,15 +139,28 @@ export const accountFormSchema: FormSchema[] = [
     },
   },
   {
-    field: 'pwd',
+    field: 'password',
     label: '密码',
     component: 'InputPassword',
     required: true,
     // ifShow: false,
   },
+  // {
+  //   label: '角色',
+  //   field: 'roles',
+  //   component: 'ApiSelect',
+  //   componentProps: {
+  //     api: getAllRoleList,
+  //     labelField: 'roleName',
+  //     valueField: 'value',
+  //     mode: 'multiple', // 关键：多选
+
+  //   },
+  //   required: true,
+  // },
   {
     label: '角色',
-    field: 'roles',
+    field: 'rolesValue',
     component: 'ApiSelect',
     componentProps: {
       api: getAllRoleList,
@@ -173,16 +191,16 @@ export const accountFormSchema: FormSchema[] = [
     required: true,
   },
 
-  // {
-  //   label: '邮箱',
-  //   field: 'email',
-  //   component: 'Input',
-  //   required: true,
-  // },
+  {
+    label: '家目录',
+    field: 'homePath',
+    component: 'Input',
+    required: true,
+  },
 
   {
     label: '备注',
-    field: 'remark',
+    field: 'desc',
     component: 'InputTextArea',
   },
 ];

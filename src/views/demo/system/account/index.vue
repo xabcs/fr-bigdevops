@@ -116,7 +116,7 @@
       return info;
     },
     actionColumn: {
-      width: 120,
+      // width: 120,
       title: '操作',
       dataIndex: 'action',
       // slots: { customRender: 'action' },

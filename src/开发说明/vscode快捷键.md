@@ -70,8 +70,8 @@
   -   删除光标所在行：shift+delete,或者ctrl+x
   -   `删除前一个单词：ctrl+backspace`  
   -   `删除后一个单词：ctrl+delete`
-  -   `删除光标到行首:ctrl +k`
-  - 删除光标到行尾:ctrl +shift+k （被cusor的内联编辑模式覆盖）
+  -   `删除光标到行尾:ctrl +k`
+  - `删除光标到行首:ctrl +shift+k （被cusor的内联编辑模式覆盖）`
   -   删除光标到文件首：ctrl+shift+home （选中） + delete（删除）
   -   删除光标到文件尾：ctrl+shift+end （选中） + delete（删除）
 - 代码块添加括号：
