@@ -32,7 +32,7 @@ export default defineApplicationConfig({
           rewrite: (path) => path.replace(new RegExp(`^/upload`), ''),
         },
       },
-      open: true, // 项目启动后，自动打开
+      // open: true, // 项目启动后，自动打开浏览器
       warmup: {
         clientFiles: ['./index.html', './src/{views,components}/*'],
       },

@@ -91,7 +91,7 @@
   // }
   function handleDelete(record: Recordable) {
     const { createMessage } = useMessage();
-    deleteMenu(record.id)
+    deleteMenu(record.ID)
       .then(() => {
         createMessage.success('删除菜单成功');
         reload();

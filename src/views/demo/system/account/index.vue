@@ -1,7 +1,8 @@
 <template>
   <PageWrapper dense contentFullHeight fixedHeight contentClass="flex">
     <!-- <DeptTree class="w-1/4 xl:w-1/5" @select="handleSelect" /> -->
-    <BasicTable @register="registerTable" class="w-3/4 xl:w-4/5" :searchInfo="searchInfo">
+    <!--  <BasicTable @register="registerTable" class="w-3/4 xl:w-4/5" :searchInfo="searchInfo"> -->
+    <BasicTable @register="registerTable" :searchInfo="searchInfo">
       <template #toolbar>
         <a-button type="primary" @click="handleCreate">新增账号</a-button>
         <a-button type="primary" @click="handleExport">导出账号</a-button>
@@ -27,12 +28,12 @@
           <div style="display: flex; flex-wrap: wrap; gap: 4px; align-items: flex-start;">
             <a-tag
               v-for="item in record.roles"
-              :key="item.value"
-              :color="GetTagColor(item.value)"
+              :key="item.roleValue"
+              :color="GetTagColor(item.roleValue)"
               :bordered="false"
               style="margin-bottom: 4px;"
             >
-              {{ item.value }}
+              {{ item.roleValue }}
             </a-tag>
           </div>
         </template>
@@ -120,6 +121,7 @@
       title: '操作',
       dataIndex: 'action',
       // slots: { customRender: 'action' },
+      fixed: undefined,
     },
   });
 
@@ -138,9 +140,10 @@
   }
 
   function handleDelete(record: Recordable) {
-    console.log("用户id",record.userId);
+    console.log("用户id",record.ID);
     const { createMessage } = useMessage();
-    deleteAccount(record.userId)
+    console.log("要删除的用户",record)
+    deleteAccount(record.ID)
       .then(() => {
         createMessage.success('删除用户成功')
         reload();

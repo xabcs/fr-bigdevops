@@ -107,7 +107,7 @@
   const FormItem = Form.Item;
   const InputPassword = Input.Password;
   const { t } = useI18n();
-  const { notification, createErrorModal } = useMessage();
+  const { notification, createMessage, createErrorModal } = useMessage();
   const { prefixCls } = useDesign('login');
   const userStore = useUserStore();
 
@@ -148,11 +148,18 @@
         });
       }
     } catch (error) {
+      const errorMessage = (error as any)?.response?.data?.message || 
+                      (error as unknown as Error).message || 
+                      t('sys.api.networkExceptionMsg');
+    if ((error as any)?.response?.status === 401) {
+      createMessage.error(errorMessage);
+    } else {
       createErrorModal({
         title: t('sys.api.errorTip'),
-        content: (error as unknown as Error).message || t('sys.api.networkExceptionMsg'),
+        content: errorMessage,
         getContainer: () => document.body.querySelector(`.${prefixCls}`) || document.body,
       });
+    }
     } finally {
       loading.value = false;
     }

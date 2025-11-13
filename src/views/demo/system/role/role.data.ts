@@ -24,6 +24,11 @@ export const columns: BasicColumn[] = [
     width: 50,
   },
   {
+    title: '关联用户',
+    dataIndex: 'users',
+    width: 200,
+  },
+  {
     title: '状态',
     dataIndex: 'status',
     width: 120,
@@ -40,10 +45,11 @@ export const columns: BasicColumn[] = [
           record.pendingStatus = true;
           const newStatus = checked ? '1' : '0';
           const { createMessage } = useMessage();
-          setRoleStatus(record.id, newStatus)
+          setRoleStatus(record.ID, newStatus)
             .then(() => {
               record.status = newStatus;
-              createMessage.success(`已成功修改角色状态`);
+              // record.id = record.id;
+              createMessage.success(`更新角色状态成功`);
             })
             .catch(() => {
               createMessage.error('修改角色状态失败');
@@ -57,7 +63,7 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '创建时间',
-    dataIndex: 'createTime',
+    dataIndex: 'CreatedAt',
     width: 180,
   },
   {
@@ -88,6 +94,12 @@ export const searchFormSchema: FormSchema[] = [
 ];
 
 export const formSchema: FormSchema[] = [
+  // {
+  //   field: 'ID',
+  //   label: '角色ID',
+  //   required: true,
+  //   component: 'Input',
+  // },
   {
     field: 'roleName',
     label: '角色名称',
@@ -119,7 +131,7 @@ export const formSchema: FormSchema[] = [
   },
   {
     label: ' ',
-    field: 'menu',
-    slot: 'menu',
+    field: 'menuIds',
+    slot: 'menuIds',
   },
 ];

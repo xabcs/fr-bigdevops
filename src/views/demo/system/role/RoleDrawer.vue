@@ -8,11 +8,11 @@
     @ok="handleSubmit"
   >
     <BasicForm @register="registerForm">
-      <template #menu="{ model, field }">
+      <template #menuIds="{ model, field }">
         <BasicTree
           v-model:value="model[field]"
           :treeData="treeData"
-          :fieldNames="{ title: t('meta.title'), key: 'id' }"
+          :fieldNames="{ title: t('meta.title'), key: 'treeId' }"
           checkable
           toolbar
           title="菜单分配"
@@ -29,7 +29,7 @@
   import { BasicDrawer, useDrawerInner } from '@/components/Drawer';
   import { BasicTree, TreeItem } from '@/components/Tree';
 
-  import { getMenuListAll ,createRole, updateRole } from '@/api/demo/system';
+  import { getMenuListAll, createRole, updateRole } from '@/api/demo/system';
   import { useI18n } from '@/hooks/web/useI18n';
 
   const { t } = useI18n();
@@ -44,7 +44,7 @@
     schemas: [
       ...formSchema,
       {
-        field: 'id',
+        field: 'ID',
         label: '',
         component: 'Input',
         show: false, // 隐藏，不渲染
@@ -61,11 +61,11 @@
     if (unref(treeData).length === 0) {
       const menuList = await getMenuListAll();
       treeData.value = translateTreeTitle(menuList);
-      console.log("treeData数据",treeData.value);
+      console.log('treeData数据', treeData.value);
     }
     isUpdate.value = !!data?.isUpdate;
-    console.log("当前操作",isUpdate.value);
-    console.log("当前数据",data.record.id);
+    // console.log("当前操作",isUpdate.value);
+    // console.log("当前数据",data.record);
     if (unref(isUpdate)) {
       setFieldsValue({
         ...data.record,
@@ -74,10 +74,10 @@
   });
 
   const getTitle = computed(() => (!unref(isUpdate) ? '新增角色' : '编辑角色'));
-  console.log("操作",getTitle);
+  console.log('操作', getTitle);
 
   function translateTreeTitle(list) {
-    return list.map(item => {
+    return list.map((item) => {
       const newItem = { ...item };
       if (newItem.meta && newItem.meta.title) {
         newItem.meta = { ...newItem.meta, title: t(newItem.meta.title) };

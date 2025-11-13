@@ -10,13 +10,26 @@ export const columns: BasicColumn[] = [
   {
     title: '中文名称',
     dataIndex: 'title',
-    width: 200,
     align: 'left',
     customRender: ({ record }) => t(record.meta?.title || record.name),
+    fixed: 'left',
   },
   {
-    title: 'id',
-    dataIndex: 'id',
+    title: '排序',
+    dataIndex: 'orderNo',
+    width: 100,
+    defaultSortOrder: 'ascend',
+    // sorter: true,
+  },
+  {
+    title: '树id',
+    dataIndex: 'treeId',
+    width: 100,
+  },
+  {
+    title: 'dbID',
+    dataIndex: 'ID',
+    width: 100,
   },
   {
     title: '英文名称',
@@ -44,12 +57,6 @@ export const columns: BasicColumn[] = [
   {
     title: '路由路径',
     dataIndex: 'path',
-  },
-  {
-    title: '排序序',
-    dataIndex: 'orderNo',
-    width: 100,
-    // sorter: true,
   },
   {
     title: '状态',
@@ -132,12 +139,12 @@ export const formSchema: FormSchema[] = [
     componentProps: {
       fieldNames: {
         label: 'title',
-        value: 'id',
+        value: 'treeId',
       },
       getPopupContainer: () => document.body,
     },
-    ifShow: ({ values }) => !isDir(values.type),
-    required: true,
+    ifShow: ({ values }) => !isButton(values.type),
+    // required: true,
   },
 
   {
@@ -152,7 +159,7 @@ export const formSchema: FormSchema[] = [
     component: 'IconPicker',
     required: true,
     // ifShow: ({ values }) => !isButton(values.type),
-    ifShow: ({ values }) => !isDir(values.type),
+    ifShow: ({ values }) => !isButton(values.type),
   },
 
   {
@@ -167,7 +174,15 @@ export const formSchema: FormSchema[] = [
     label: '组件路径',
     component: 'Input',
     required: true,
-    ifShow: ({ values }) => !isButton(values.type),
+    // ifShow: ({ values }) => !isButton(values.type),
+    ifShow: ({ values }) => {
+      if (isDir(values.type)) {
+        // 假设 parentMenu 为空字符串或 '0' 时为顶级目录
+        return !values.parentMenu || values.parentMenu === '0';
+      }
+      // 非目录类型，沿用之前的逻辑
+      return !isButton(values.type);
+    },
   },
   {
     field: 'permission',

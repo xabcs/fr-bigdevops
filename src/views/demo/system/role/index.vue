@@ -5,6 +5,19 @@
         <a-button type="primary" @click="handleCreate"> 新增角色 </a-button>
       </template>
       <template #bodyCell="{ column, record }">
+        <template v-if="column.key === 'users'">
+          <div style="display: flex; flex-wrap: wrap; gap: 4px; align-items: flex-start;">
+            <a-tag
+              v-for="item in record.users"
+              :key="item.username"
+              :color="GetTagColor()"
+              :bordered="false"
+              style="margin-bottom: 4px;"
+            >
+              {{ item.username }}
+            </a-tag>
+          </div>
+        </template>
         <template v-if="column.key === 'action'">
           <TableAction
             :actions="[
@@ -64,7 +77,9 @@
       fixed: undefined,
     },
   });
-
+  function GetTagColor() {
+        return 'success';
+  }
   function handleCreate() {
     openDrawer(true, {
       isUpdate: false,
@@ -72,7 +87,7 @@
   }
 
   function handleEdit(record: Recordable) {
-    console.log('编辑传入的record', record.id); // 这里必须能看到 id
+    console.log('编辑传入的record', record.ID); // 这里必须能看到 id
     openDrawer(true, {
       record,
       isUpdate: true,
@@ -80,9 +95,9 @@
   }
 
   function handleDelete(record: Recordable) {
-    console.log(record);
+    console.log('删除操作传入的 record:', record);
     const { createMessage } = useMessage();
-    deleteRole(record.id)
+    deleteRole(record.ID)
       .then(() => {
         createMessage.success('删除角色成功');
         reload();

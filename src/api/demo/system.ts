@@ -19,34 +19,41 @@ import { defHttp } from '@/utils/http/axios';
 enum Api {
   AccountList = '/api/system/getAccountList',
   // AccountList = '/system/getAccountList',
-  IsAccountExist = '/system/accountExist',
+  IsAccountExist = '/api/system/accountExist',
+  // IsAccountExist = '/system/accountExist',
   // DeptList = '/system/getDeptList',
-  setRoleStatus = '/system/setRoleStatus',
+  setRoleStatus = '/api/system/setRoleStatus',
+  // setRoleStatus = '/system/setRoleStatus',
   // 获取菜单列表table数据的接口
   MenuList = '/api/system/getMenuList',
   // MenuList = '/system/getMenuList',
   MenuListAll = '/api/system/getMenuListAll',
   // MenuListAll = '/system/getMenuListAll',
   RolePageList = '/system/getRoleListByPage',
+  // RolePageList = '/system/getRoleListByPage',
   GetAllRoleList = '/api/system/getRoleListAll',
   // GetAllRoleList = '/system/getAllRoleList',
-  DeleteRole = '/system/deleteRole',
+  DeleteRole = '/api/system/deleteRole',
+  // DeleteRole = '/system/deleteRole',
   createMenu = '/api/system/createMenu',
   // createMenu = '/system/createMenu',
-  deleteMenu = '/system/deleteMenu',
-  createRole = '/system/createRole',
-  updateRole = '/system/updateRole',
+  deleteMenu = '/api/system/deleteMenu',
+  // deleteMenu = '/system/deleteMenu',
+  createRole = '/api/system/createRole',
+  // createRole = '/system/createRole',
+  updateRole = '/api/system/updateRole',
+  // updateRole = '/system/updateRole',
   // createAccount = '/system/createAccount',
   createAccount = '/api//system/createAccount',
-  deleteAccount = '/system/deleteAccount',
+  // deleteAccount = '/system/deleteAccount',
+  deleteAccount = '/api/system/deleteAccount',
   updateAccount = '/api/system/updateAccount',
   // updateAccount = '/system/updateAccount',
   DeptList = '/system/getDeptList',
   updateMenu = '/api/system/updateMenu',
   // updateMenu = '/system/updateMenu',
-  changePassword='/system/changePassword'
-
-
+  changePassword = '/api/system/changePassword',
+  // changePassword = '/system/changePassword',
 }
 
 export const getAccountList = (params: AccountParams) =>
@@ -65,12 +72,12 @@ export const updateMenu = (params: MenuForm) => defHttp.post({ url: Api.updateMe
 export const createRole = (params: RoleForm) => defHttp.post({ url: Api.createRole, params });
 
 export const updateRole = (params: RoleForm) => defHttp.post({ url: Api.updateRole, params });
-export const  createAccount = (params: any) => defHttp.post({ url: Api.createAccount, params });
-export const  updateAccount = (params: any) => defHttp.post({ url: Api.updateAccount, params });
-
+export const createAccount = (params: any) => defHttp.post({ url: Api.createAccount, params });
+export const updateAccount = (params: any) => defHttp.post({ url: Api.updateAccount, params });
 
 export const getRoleListByPage = (params?: RolePageParams) =>
-  defHttp.get<RolePageListGetResultModel>({ url: Api.RolePageList, params });
+  defHttp.get<RolePageListGetResultModel>({ url: Api.GetAllRoleList, params });
+// defHttp.get<RolePageListGetResultModel>({ url: Api.RolePageList, params });
 
 export const getAllRoleList = (params?: RoleParams) =>
   defHttp.get<RoleListGetResultModel>({ url: Api.GetAllRoleList, params });
@@ -82,8 +89,11 @@ export const isAccountExist = (account: string) =>
   defHttp.post({ url: Api.IsAccountExist, params: { account } }, { errorMessageMode: 'none' });
 
 export const deleteRole = (id: number) => defHttp.delete({ url: Api.DeleteRole, params: { id } });
+//路径参数删除角色
+// export const deleteRole = (id: number) => defHttp.delete({ url: Api.DeleteRole + '/' + id });
 export const deleteMenu = (id: number) => defHttp.delete({ url: Api.deleteMenu, params: { id } });
 
-export const deleteAccount = (id: number) => defHttp.delete({ url: Api.deleteAccount, params: { id } });
+export const deleteAccount = (id: number) =>
+  defHttp.delete({ url: Api.deleteAccount, params: { id } });
 export const changePassword = (params: { oldPassword: string; newPassword: string }) =>
   defHttp.post({ url: Api.changePassword, params });
