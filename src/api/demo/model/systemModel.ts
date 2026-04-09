@@ -2,6 +2,7 @@ import { componentMap } from '@/components/Table/src/componentMap';
 import { Icon } from '@/components/Icon/Icon.vue';
 import { BasicPageParams, BasicFetchResult } from '@/api/model/baseModel';
 import type { RouteMeta } from 'vue-router';
+
 export type AccountParams = BasicPageParams & {
   account?: string;
   nickname?: string;
@@ -22,6 +23,10 @@ export type DeptParams = {
 
 export type MenuParams = {
   menuName?: string;
+  status?: string;
+};
+export type ApiParams = {
+  apiName?: string;
   status?: string;
 };
 // id: `${index}`,
@@ -51,7 +56,7 @@ export type MenuForm = {
   meta: RouteMeta;
 };
 export type RoleForm = {
-  id:  number;
+  id: number;
   orderNo: string | number;
   roleName: string;
   roleValue: string;

@@ -4,6 +4,7 @@ import {
   AccountParams,
   DeptListItem,
   MenuParams,
+  ApiParams,
   RoleParams,
   RolePageParams,
   MenuListGetResultModel,
@@ -26,6 +27,8 @@ enum Api {
   // setRoleStatus = '/system/setRoleStatus',
   // 获取菜单列表table数据的接口
   MenuList = '/api/system/getMenuList',
+  // 获取api列表table数据的接口
+  ApiList = '/api/system/getApiList',
   // MenuList = '/system/getMenuList',
   MenuListAll = '/api/system/getMenuListAll',
   // MenuListAll = '/system/getMenuListAll',
@@ -36,6 +39,7 @@ enum Api {
   DeleteRole = '/api/system/deleteRole',
   // DeleteRole = '/system/deleteRole',
   createMenu = '/api/system/createMenu',
+  createApi = '/api/system/createApi',
   // createMenu = '/system/createMenu',
   deleteMenu = '/api/system/deleteMenu',
   // deleteMenu = '/system/deleteMenu',
@@ -64,6 +68,10 @@ export const getDeptList = (params?: DeptListItem) =>
 
 export const getMenuList = (params?: MenuParams) =>
   defHttp.get<MenuListGetResultModel>({ url: Api.MenuList, params });
+export const getApiList = (params?: ApiParams) =>
+  defHttp.get({ url: Api.ApiList, params });
+export const createApi = (params?: ApiParams) =>
+  defHttp.post({ url: Api.createApi, params });
 export const getMenuListAll = (params?: MenuParams) =>
   defHttp.get<MenuListGetResultModel>({ url: Api.MenuListAll, params });
 
